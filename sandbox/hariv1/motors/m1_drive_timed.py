@@ -35,8 +35,8 @@ Authors: David Fisher and Vikram Hari.
 #     400 degrees / second  -->  traveled 45.8 inches  -->  4.58 inches / second
 #   Tests @ 5 seconds:
 #     500 degrees / second  -->  traveled 28.2 inches  -->  5.64 inches / second
-#     600 degrees / second  -->  traveled 34 inches  -->  6.8 inches / second
-#     700 degrees / second  -->  traveled 39.5 inches  --> 7.9 inches / second
+#     600 degrees / second  -->  traveled 34 inches  -->  6.80 inches / second
+#     700 degrees / second  -->  traveled 39.5 inches  --> 7.90 inches / second
 #     800 degrees / second  -->  traveled 44.6 inches  --> 8.92 inches / second
 #     900 degrees / second  -->  traveled 46.2 inches  --> 9.24 inches / second
 #  (probably no faster than 800)
@@ -49,6 +49,7 @@ Authors: David Fisher and Vikram Hari.
 #       that would roughly fit most of your data.  Put your value for m below and think about if it most fits:
 #
 #       speed_in_inches_per_second = m * speed_in_degrees_per_second + 0
+#       m = 0.011518413
 #
 #     Eventually your goal is to make an equation that will allow users to input any distance in inches and any speed in
 #     degrees per second, then output the time needed to drive the correct distance at that speed.  So eventually you
@@ -65,6 +66,52 @@ Authors: David Fisher and Vikram Hari.
 #    print("  Timed Driving")
 #    print("--------------------------------------------")
 #    ev3.Sound.speak("Timed Driving").wait()
+#!/usr/bin/env python3
+"""
+This demo lets you see how to use an input prompt to test different drive speeds.
+
+Author: David Fisher.
+"""
+
+import ev3dev.ev3 as ev3
+import time
+
+
+def main():
+    print("--------------------------------------------")
+    print("  Drive using input")
+    print("--------------------------------------------")
+    ev3.Sound.speak("Drive distance").wait()
+
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+
+    time_s = 1  # Any value other than 0.
+    while time_s != 0:
+        left_sp = int(input("Enter a speed for the left motor (0 to 900 dps): "))
+        right_sp = int(input("Enter a speed for the right motor (0 to 900 dps): "))
+        time_s = int(input("Enter a time to drive (seconds): "))
+        left_motor.run_forever(speed_sp=left_sp)
+        right_motor.run_forever(speed_sp=right_sp)
+        time.sleep(time_s)
+        left_motor.stop()
+        right_motor.stop(stop_action="brake")
+
+    print("Goodbye!")
+    ev3.Sound.speak("Goodbye").wait()
+
+
+# ----------------------------------------------------------------------
+# Calls  main  to start the ball rolling.
+# ----------------------------------------------------------------------
+main()
+
+
 # TODO: 4. Change the input questions from:
 #   Enter a speed for the left motor (0 to 900 dps):
 #   Enter a speed for the right motor (0 to 900 dps):
