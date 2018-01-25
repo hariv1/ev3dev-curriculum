@@ -60,8 +60,7 @@ Authors: David Fisher and Vikram Hari.
 #   Note: To repeat again, in later modules you will learn different (better) ways to travel a given distance using
 #     motor encoders, so just make a simple rough approximation here, since later we'll do it better in a different way.
 #
-# TODO: 4. Copy the content of the /examples/motors/drive_input_speed.py
-# program and place it below these comments.
+# TODO: 3. Copy the content of the /examples/motors/drive_input_speed.py program and place it below these comments.
 #   Change the initial print and speak commands to reflect this module, like this...
 #    print("--------------------------------------------")
 #    print("  Timed Driving")
@@ -95,10 +94,14 @@ def main():
     time_s = 1  # Any value other than 0.
     while time_s != 0:
         speed = int(input("Enter a speed (0 to 900 dps): "))
-        time_s = int(input("Enter a time to drive (seconds): "))
-        left_motor.run_forever(speed_sp=speed)
+        if speed == 0:
+            break
+        distance = int(input("Distance to travel (inches): "))
+        if distance == 0:
+            break
+        left_motor.run_forever(speed_sp= speed)
         right_motor.run_forever(speed_sp=speed)
-        time.sleep(time_s)
+        time.sleep(distance/(0.011518413*speed))
         left_motor.stop()
         right_motor.stop(stop_action="brake")
 
