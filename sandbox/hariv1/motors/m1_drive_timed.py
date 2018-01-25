@@ -29,9 +29,9 @@ Authors: David Fisher and Vikram Hari.
 #
 #  Record your calculated speed conversions here:
 #   Tests @ 10 seconds:
-#     100 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     200 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     300 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
+#     100 degrees / second  -->  traveled 13.2 inches  -->  1.32 inches / second
+#     200 degrees / second  -->  traveled 24.0 inches  -->  2.40 inches / second
+#     300 degrees / second  -->  traveled 35.1 inches  -->  3.51 inches / second
 #     400 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
 #   Tests @ 5 seconds:
 #     500 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
