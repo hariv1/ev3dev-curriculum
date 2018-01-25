@@ -32,13 +32,14 @@ Authors: David Fisher and Vikram Hari.
 #     100 degrees / second  -->  traveled 13.2 inches  -->  1.32 inches / second
 #     200 degrees / second  -->  traveled 24.0 inches  -->  2.40 inches / second
 #     300 degrees / second  -->  traveled 35.1 inches  -->  3.51 inches / second
-#     400 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
+#     400 degrees / second  -->  traveled 45.8 inches  -->  4.58 inches / second
 #   Tests @ 5 seconds:
-#     500 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     600 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     700 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     800 degrees / second  -->  traveled XXX inches  -->  YYY inches / second
-#     900 degrees / second  -->  traveled XXX inches  -->  YYY inches / second (probably no faster than 800)
+#     500 degrees / second  -->  traveled 28.2 inches  -->  5.64 inches / second
+#     600 degrees / second  -->  traveled 34 inches  -->  6.8 inches / second
+#     700 degrees / second  -->  traveled 39.5 inches  --> 7.9 inches / second
+#     800 degrees / second  -->  traveled 44.6 inches  --> 8.92 inches / second
+#     900 degrees / second  -->  traveled 46.2 inches  --> 9.24 inches / second
+#  (probably no faster than 800)
 #
 # TODO: 3. Make an equation
 #   Derive from that information a way to convert a given degrees per second speed into an inches / second speed.
