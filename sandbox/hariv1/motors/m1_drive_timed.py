@@ -97,9 +97,11 @@ def main():
         if speed == 0:
             break
         distance = int(input("Distance to travel (inches): "))
+        if distance == 0:
+            break
         left_motor.run_forever(speed_sp= speed)
         right_motor.run_forever(speed_sp=speed)
-        time.sleep(5)
+        time.sleep(distance/(0.011518413*speed))
         left_motor.stop()
         right_motor.stop(stop_action="brake")
 
