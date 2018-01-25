@@ -98,7 +98,7 @@ def main():
             break
         distance = int(input("Distance to travel (inches): "))
         left_motor.run_forever(speed_sp= speed)
-        right_motor.run_forever(speed_sp=speed)
+        right_motor.run_forever(speed_sp=speed) 
         time.sleep()
         left_motor.stop()
         right_motor.stop(stop_action="brake")
