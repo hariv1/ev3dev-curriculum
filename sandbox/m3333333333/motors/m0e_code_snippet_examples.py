@@ -67,6 +67,3 @@ def using_the_concise_property_shorthand_vs_verbose():
 
 
 
-
-#hhgfghfhgfghf
-#gfhgfhgfghfhgfh

@@ -28,14 +28,14 @@ def main():
         # Tip for later, try a negative value for Number of sides: to drive CW around the polygon instead of CCW.
         if sides == 0:
             break
-        turn_amount = 360 / sides
+        robot.turn_degrees(360/sides, speed_deg_per_second)
 
         edge_length_in = int(input("Length of each edge (inches): "))
         if edge_length_in == 0:
             break
 
         # TODO: 2. Individually implement the code here to use your drive_inches and turn_degrees library methods to
-        # drive a polygon with the correct number of sides. (Hint: You will add 3 lines of code. What are they?).
+        # drive a polygon with the correct number of sides. (Hint: You will add 3 lines of code. What are they?
 
 
 
