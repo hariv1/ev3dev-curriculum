@@ -28,5 +28,6 @@ class Snatch3r(object):
 
         assert self.left_motor.connected
         assert self.right_motor.connected
+        b
 
 
