@@ -31,4 +31,14 @@ class Snatch3r(object):
         assert self.right_motor.connected
 
 
+    def drive_inches(self, inches_target, speed_deg_per_sec):
+        position = 90 * inches_target
+        self.left_motor.run_to_rel_pos(position_sp=position,speed_sp=speed_deg_per_sec,stop_action='brake')
+        self.right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed_deg_per_sec,stop_action='brake')
+        ev3.Sound.beep().wait()
+
+        print("Goodbye!")
+        ev3.Sound.speak("Goodbye").wait()
+
+
 
