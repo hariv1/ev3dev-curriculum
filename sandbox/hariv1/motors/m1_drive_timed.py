@@ -11,7 +11,8 @@ Note: If future modules you will learn different (BETTER) ways to drive a given 
 Authors: David Fisher and Vikram Hari.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Get a yardstick or tape measure to do some testing with /examples/motors/drive_input_speed.py
+# DONE: 2. Get a yardstick or tape measure to do some testing with
+# /examples/motors/drive_input_speed.py
 #   Have your whole team work this activity together.
 #   For your first test run drive_input_speed (via python drive_input_speed from that folder using SSH).
 #   Enter these values for your first test and record the distance below as XXX for 100.
@@ -41,7 +42,7 @@ Authors: David Fisher and Vikram Hari.
 #     900 degrees / second  -->  traveled 46.2 inches  --> 9.24 inches / second
 #  (probably no faster than 800)
 #
-# TODO: 3. Make an equation
+# DONE: 3. Make an equation
 #   Derive from that information a way to convert a given degrees per second speed into an inches / second speed.
 #     If you plotted the data with degrees / second on the x axis and inches per second on the y axis you would find the
 #       data is fairly linear, so you could use a    y = m * x + b   line approximation formula.  Excel could even help
@@ -79,9 +80,9 @@ import time
 
 def main():
     print("--------------------------------------------")
-    print("  Drive using input")
+    print("  Timed Driving")
     print("--------------------------------------------")
-    ev3.Sound.speak("Drive distance").wait()
+    ev3.Sound.speak("Timed Driving").wait()
 
     # Connect two large motors on output ports B and C
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
