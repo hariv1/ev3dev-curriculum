@@ -10,15 +10,13 @@ Authors: David Fisher and Vikram Hari.
 # TODO: 2. Copy the contents of your m1_drive_timed.py and paste that text into this file below these comments.
 #   If your program says and prints anything at the start change it to print and say "Drive using encoders"
 
-
-
 import ev3dev.ev3 as ev3
 import time
 
 
 def main():
     print("--------------------------------------------")
-    print("  Drive using input")
+    print("  Drive using encoders")
     print("--------------------------------------------")
     ev3.Sound.speak("Drive distance").wait()
 
@@ -38,16 +36,21 @@ def main():
         distance = int(input("Distance to travel (inches): "))
         if distance == 0:
             break
-        left_motor.run_forever(speed_sp= speed)
+        left_motor.run_forever(speed_sp=speed)
         right_motor.run_forever(speed_sp=speed)
         time.sleep(distance/(0.011518413*speed))
         left_motor.stop()
         right_motor.stop()
+        ev3.Sound.beep().wait()
 
     print("Goodbye!")
-    ev3.Sound.beep().wait()
     ev3.Sound.speak("Goodbye").wait()
 
+
+# ----------------------------------------------------------------------
+# Calls  main  to start the ball rolling.
+# ----------------------------------------------------------------------
+main()
 
 # TODO: 3. Add a beep after the drive motors stop (see code below).  Test your code to hear the beep AFTER movement.
 #   ev3.Sound.beep().wait()
