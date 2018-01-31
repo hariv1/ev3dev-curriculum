@@ -41,9 +41,9 @@ def main():
         # time.sleep(distance/(0.011518413*speed))
         # left_motor.stop()
         # right_motor.stop()
-        position_sp = 90 * distance
-        left_motor.run_to_rel_pos(position_sp=position_sp, speed_sp=speed, stop_action="brake")
-        right_motor.run_to_rel_pos(position_sp=position_sp, speed_sp=speed, stop_action="brake")
+        position = 90 * distance
+        left_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action="brake")
+        right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action="brake")
         ev3.Sound.beep().wait()
 
     print("Goodbye!")
