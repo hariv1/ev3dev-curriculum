@@ -103,7 +103,7 @@ def main():
         right_motor.run_forever(speed_sp=speed)
         time.sleep(distance/(0.011518413*speed))
         left_motor.stop()
-        right_motor.stop(stop_action="brake")
+        right_motor.stop()
 
     print("Goodbye!")
     ev3.Sound.speak("Goodbye").wait()
