@@ -37,11 +37,8 @@ def main():
         distance = int(input("Distance to travel (inches): "))
         if distance == 0:
             break
-        left_motor.run_forever(speed_sp=speed)
-        right_motor.run_forever(speed_sp=speed)
-        time.sleep(distance/(0.011518413*speed))
-        left_motor.stop()
-        right_motor.stop()
+        left_motor.run_to_rel_pos(90*distance , speed, stop_action='brake')
+        right_motor.run_to_rel_pos(90*distance , speed, stop_action='brake')
         ev3.Sound.beep().wait()
 
     print("Goodbye!")
@@ -53,7 +50,8 @@ def main():
 # ----------------------------------------------------------------------
 main()
 
-# TODO: 3. Add a beep after the drive motors stop (see code below).  Test your code to hear the beep AFTER movement.
+# DONE: 3. Add a beep after the drive motors stop (see code below).  Test your
+# code to hear the beep AFTER movement.
 #   ev3.Sound.beep().wait()
 
 # TODO: 4. Instead of using the run_forever, time.sleep, stop pattern switch to using the run_to_rel_pos command.
