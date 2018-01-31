@@ -40,7 +40,7 @@ def main():
         # right_motor.run_forever(speed_sp=speed)
         # time.sleep(distance/(0.011518413*speed))
         # left_motor.stop()
-        # right_motor.stop()
+        # right_motor.stop()1
         position = 90 * distance
         left_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action="brake")
         right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action="brake")
