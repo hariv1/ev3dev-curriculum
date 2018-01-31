@@ -37,8 +37,9 @@ def main():
         distance = int(input("Distance to travel (inches): "))
         if distance == 0:
             break
-        left_motor.run_to_rel_pos(90*distance , speed, stop_action='brake')
-        right_motor.run_to_rel_pos(90*distance , speed, stop_action='brake')
+        position = 90*distance
+        left_motor.run_to_rel_pos(position, speed_sp = speed, stop_action='brake')
+        right_motor.run_to_rel_pos(position , speed_sp = speed, stop_action='brake')
         ev3.Sound.beep().wait()
 
     print("Goodbye!")
