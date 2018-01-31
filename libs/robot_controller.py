@@ -35,22 +35,31 @@ class Snatch3r(object):
         position = 90 * inches_target
         self.left_motor.run_to_rel_pos(position_sp=position,speed_sp=speed_deg_per_sec,stop_action='brake')
         self.right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed_deg_per_sec,stop_action='brake')
-        ev3.Sound.beep().wait()
+        self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
-        print("Goodbye!")
-        ev3.Sound.speak("Goodbye").wait()
+
 
     def turn_degrees(self, degrees_to_turn, turn_speed_sp):
+        position = degrees_to_turn * 90
         if degrees_to_turn > 0:
-            self.left_motor.run_to_rel_pos(speed_sp=turn_speed_sp,
+            self.left_motor.run_to_rel_pos(position_sp = position,
+                                           speed_sp=turn_speed_sp,
                                            stop_action='brake')
-            self.right_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
+            self.right_motor.run_to_rel_pos(position_sp = position,
+                                            speed_sp=-turn_speed_sp,
                                             stop_action='brake')
+            self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+            self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
         elif degrees_to_turn < 0:
-            self.left_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
+            self.left_motor.run_to_rel_pos(position_sp = position,
+                                           speed_sp=-turn_speed_sp,
                                            stop_action='brake')
-            self.right_motor.run_to_rel_pos(speed_sp=turn_speed_sp,
+            self.right_motor.run_to_rel_pos(position_sp = position,
+                                            speed_sp=turn_speed_sp,
                                             stop_action='brake')
+            self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+            self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
         ev3.Sound.beep().wait()
 
