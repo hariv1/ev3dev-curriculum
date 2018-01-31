@@ -36,11 +36,14 @@ def main():
         distance = int(input("Distance to travel (inches): "))
         if distance == 0:
             break
-        left_motor.run_forever(speed_sp=speed)
-        right_motor.run_forever(speed_sp=speed)
-        time.sleep(distance/(0.011518413*speed))
-        left_motor.stop()
-        right_motor.stop()
+        # left_motor.run_forever(speed_sp=speed)
+        # right_motor.run_forever(speed_sp=speed)
+        # time.sleep(distance/(0.011518413*speed))
+        # left_motor.stop()
+        # right_motor.stop()
+        position_sp = 90 * distance
+        left_motor.run_to_rel_pos(position_sp=position_sp, speed_sp=speed, stop_action="brake")
+        right_motor.run_to_rel_pos(position_sp=position_sp, speed_sp=speed, stop_action="brake")
         ev3.Sound.beep().wait()
 
     print("Goodbye!")
@@ -85,5 +88,3 @@ main()
 # TODO: 7. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
 #
 # Observations you should make, run_to_rel_pos is easier to use since it uses encoders that are independent of speed.
-
-
