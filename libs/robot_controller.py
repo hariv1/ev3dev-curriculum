@@ -31,4 +31,26 @@ class Snatch3r(object):
         assert self.right_motor.connected
 
 
+    def drive(self):
+        time_s = 1  # Any value other than 0.
+        while time_s != 0:
+            speed = int(input("Enter a speed (0 to 900 dps): "))
+            if speed == 0:
+                break
+            distance = int(input("Distance to travel (inches): "))
+            if distance == 0:
+                break
+            position = 90 * distance
+            self.left_motor.run_to_rel_pos(position_sp=position,
+                                           speed_sp=speed,
+                                      stop_action='brake')
+            self.right_motor.run_to_rel_pos(position_sp=position,
+                                           speed_sp=speed,
+                                       stop_action='brake')
+            ev3.Sound.beep().wait()
+
+        print("Goodbye!")
+        ev3.Sound.speak("Goodbye").wait()
+
+
 
