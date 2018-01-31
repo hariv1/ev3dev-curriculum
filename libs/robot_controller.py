@@ -40,5 +40,20 @@ class Snatch3r(object):
         print("Goodbye!")
         ev3.Sound.speak("Goodbye").wait()
 
+    def turn_degrees(self, degrees_to_turn, turn_speed_sp):
+        if degrees_to_turn > 0:
+            self.left_motor.run_to_rel_pos(speed_sp=turn_speed_sp,
+                                           stop_action='brake')
+            self.right_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
+                                            stop_action='brake')
+        elif degrees_to_turn < 0:
+            self.left_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
+                                           stop_action='brake')
+            self.right_motor.run_to_rel_pos(speed_sp=turn_speed_sp,
+                                            stop_action='brake')
+
+        ev3.Sound.beep().wait()
+
+
 
 
