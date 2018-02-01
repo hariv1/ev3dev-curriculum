@@ -73,8 +73,16 @@ def main():
 
         if btn.up:
             print('up')
-            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.BLACK)
+            ev3.Leds.all_off()
+
+        if btn.left:
+            print('left')
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.BLACK)
+
+        if btn.right:
+
+
 
 
 
