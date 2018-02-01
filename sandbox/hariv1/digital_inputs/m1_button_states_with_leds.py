@@ -52,6 +52,7 @@ def main():
                   ev3.Leds.AMBER]
 
     current_color_index = 0
+    count = 1
     while True: 
         # TODO: 3. Implement the left, right, and up buttons as follows:
         #    When the up button is being pressed:
@@ -96,11 +97,11 @@ def main():
         #     with a while loop that blocks code execution until the down instance variable is False.
         #     Use a time.sleep(0.01) inside the while loop to do nothing but wait for the button to be released.
 
-        count = 1
-        while btn.down:
+
+        if btn.down:
             ev3.Leds.set_color(ev3.Leds.RIGHT, led_colors[count])
             ev3.Leds.set_color(ev3.Leds.LEFT, led_colors[count])
-            if count < len(led_colors)-2:
+            if count <= len(led_colors)-2:
                 count += 1
             else:
                 count = 0
