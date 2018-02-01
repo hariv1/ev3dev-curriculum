@@ -96,9 +96,21 @@ def main():
         #     with a while loop that blocks code execution until the down instance variable is False.
         #     Use a time.sleep(0.01) inside the while loop to do nothing but wait for the button to be released.
 
-        for k in range(len(led_colors)):
-            ev3.Leds.set_color(ev3.Leds.RIGHT, led_colors[k])
-            ev3.Leds.set_color(ev3.Leds.LEFT, led_colors[k])
+        count = 1
+        while btn.down:
+            ev3.Leds.set_color(ev3.Leds.RIGHT, led_colors[count])
+            ev3.Leds.set_color(ev3.Leds.LEFT, led_colors[count])
+            if count < len(led_colors)-2:
+                count += 1
+            else:
+                count = 0
+
+            while btn.down:
+                if btn.down == False:
+                    break
+
+
+
 
 
         # TODO: 5. Formally test your work. When you think you have the problem complete run these tests:
