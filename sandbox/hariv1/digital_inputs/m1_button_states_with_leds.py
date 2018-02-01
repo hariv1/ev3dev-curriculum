@@ -71,14 +71,12 @@ def main():
         #     there just to provide you with code examples for using the LEDs.  It does not need to run anymore.
         #     Just make sure not to comment out too much. ;)
 
-        while btn.on_up:
+        if btn.up:
             print('up')
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.BLACK)
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.BLACK)
 
-        while True:
-            btn.process()
-            time.sleep(0.1)
+
 
 
         # TODO: 4. Implement the down button to change the color of both LEDs.
