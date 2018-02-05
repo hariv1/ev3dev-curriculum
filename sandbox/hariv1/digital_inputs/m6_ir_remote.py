@@ -25,8 +25,8 @@
     -- Pressing the Back button will allow your program to end.  It should stop motors, turn on both green LEDs, and
        then print and say Goodbye.  You will need to implement a new robot method called shutdown to handle this task.
 
-Authors: David Fisher and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher and Vikram Hari.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import ev3dev.ev3 as ev3
 import time
@@ -71,16 +71,14 @@ def main():
     assert left_motor.connected
     assert right_motor.connected
 
-    max_speed = 600
-    min_speed = -600
+
+
     rc1 = ev3.RemoteControl(channel=1)
-    rc1.on_red_up = left_motor.run_forever(speed_sp=max_speed)
-    rc1.on_blue_up = right_motor.run_forever(speed_sp=max_speed)
-    rc1.on_red_down = left_motor.run_forever(speed_sp=min_speed)
-    rc1.on_blue_down = right_motor.run_forever(speed_sp=min_speed)
+    rc1.on_red_up = lambda button_state:robot.red_up(button_state)
 
 
     rc2 = ev3.RemoteControl(channel=2)
+    rc2.on_red_up =
 
 
 
@@ -89,6 +87,8 @@ def main():
 
     while dc.running:
         # TODO: 5. Process the RemoteControl objects.
+        rc1.process()
+        rc2.process()
         btn.process()
         time.sleep(0.01)
 
