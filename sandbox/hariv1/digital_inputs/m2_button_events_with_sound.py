@@ -54,9 +54,9 @@ def main():
     #  btn.on_up = handle_up_button
 
     btn.on_up = handle_up_button
-    btn.on_down = handle_up_button
-    btn.on_left = handle_up_button
-    btn.on_down = handle_up_button
+    btn.on_down = handle_down_button
+    btn.on_left = handle_left_button
+    btn.on_right = handle_right_button
 
     # TODO: 5. Note #4 is lower (this is TO DO #5 which you should do after #4).
     # Add a lambda callback for on_backspace.  The syntax of lambda is:
@@ -92,8 +92,18 @@ def handle_up_button(button_state):
     """Handle IR / button event."""
     if button_state:
         print("Up button is pressed")
+        play_song_by_individual_tones()
     else:
         print("Up button was released")
+
+def handle_down_button(button_state):
+    """Handle IR / button event."""
+    if button_state:
+        print("Down button is pressed")
+        play_song_by_notes_list()
+    else:
+        print("Down button was released")
+
 
 
 # TODO: 6. Implement the handle_shutdown function.
