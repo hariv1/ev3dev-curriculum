@@ -54,6 +54,7 @@ class DataContainer(object):
         self.teary_eyes = Image.open("/home/robot/csse120/assets/images/ev3_lego/eyes_tear.bmp")
 
 
+
 def main():
     print("--------------------------------------------")
     print(" IR Events with the Screen")
@@ -68,6 +69,10 @@ def main():
 
     rc1 = ev3.RemoteControl(channel=1)
     rc1.on_red_up = lambda button_state: handle_red_up_1(button_state, dc)
+    rc1.on_red_down = lambda button_state: handle_red_down_1(button_state, dc)
+    rc1.on_blue_up = lambda button_state: handle_blue_up_1(button_state, dc)
+    rc1.on_blue_down = lambda button_state: handle_blue_down_1(button_state,
+                                                               dc)
 
 
     rc2 = ev3.RemoteControl(channel=2)
@@ -119,6 +124,7 @@ def main():
     #   .on_red_down  to call handle_red_down_1  (that exist already) with state and dc as parameters
     #   .on_blue_up   to call handle_blue_up_1   (that exist already) with state and dc as parameters
     #   .on_blue_down to call handle_blue_down_1 (that exist already) with state and dc as parameters
+
 
     # TODO: 5. Create remote control objects for channels 2, 3, and 4. Add lambda callbacks for on_red_up to each one:
     #   Channel 2's .on_red_up should call handle_red_up_2 (that exist already) with state and dc as parameters
