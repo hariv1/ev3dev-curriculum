@@ -21,8 +21,8 @@ Which will probably not require you to type the password since sudo was just run
 
 BTW chvt means CHange the Virtual Terminal, and 86ing something means to kick it out.
 
-Authors: David Fisher and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher and Vikram Hari.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import ev3dev.ev3 as ev3
 import time
@@ -65,6 +65,12 @@ def main():
 
     # Object that is storing references to images that can be passed into callbacks.
     dc = DataContainer()
+
+    rc1 = ev3.RemoteControl(channel=1)
+    rc1.on_red_up = lambda button_state: handle_red_up_1(button_state, dc)
+
+
+    rc2 = ev3.RemoteControl(channel=2)
 
 
 
