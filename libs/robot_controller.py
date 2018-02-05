@@ -58,7 +58,7 @@ class Snatch3r(object):
         """turn left and right motors a given number of degree and given
         speed(degree per second. If the degree_to_turn is positive,
         robot turn right. If degree_to_turn is negative, robot turn left)"""
-        position = degrees_to_turn * 5
+        position = degrees_to_turn * 4
         if degrees_to_turn > 0:
             self.left_motor.run_to_rel_pos(position_sp = position,
                                            speed_sp=turn_speed_sp,
