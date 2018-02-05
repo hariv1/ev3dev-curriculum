@@ -32,6 +32,8 @@ class Snatch3r(object):
 
 
     def drive_inches(self, inches_target, speed_deg_per_sec):
+        """drive left and right motor, a given distance (inch), a given speed(
+        degree per second)"""
         position = 90 * inches_target
         self.left_motor.run_to_rel_pos(position_sp=position,speed_sp=speed_deg_per_sec,stop_action='brake')
         self.right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed_deg_per_sec,stop_action='brake')
@@ -41,6 +43,8 @@ class Snatch3r(object):
 
 
     def turn_degrees(self, degrees_to_turn, turn_speed_sp):
+        """turn left and right motors a given number of degree and given
+        speed(degree per second)"""
         position = degrees_to_turn * 5
         if degrees_to_turn > 0:
             self.left_motor.run_to_rel_pos(position_sp = position,
@@ -61,7 +65,9 @@ class Snatch3r(object):
             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
             self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
+
         ev3.Sound.beep().wait()
+
 
 
 
