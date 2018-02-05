@@ -80,6 +80,23 @@ class Snatch3r(object):
         """"(Raise the arm until it hit the touch sensor, then tern back to
         position 0)"""
 
+        self.arm_motor.run_forever(speed_sp= 900)
+        while True:
+            if self.touch_sensor.is_pressed:
+                break
+            time.sleep(0.01)
+        self.arm_motor.stop(stop_action="brake")
+        ev3.Sound.beep()
+        arm_revolutions_for_full_range = 14.2 * 360
+        self.arm_motor.run_to_rel_pos(
+            position_sp=-arm_revolutions_for_full_range,
+                                 speed_sp= 900)
+        self.arm_motor.wait_while(self.arm_motor.STATE_RUNNING)
+        ev3.Sound.beep()
+
+        self.arm_motor.position = 0  # Calibrate the down position as 0 (this
+        # line is correct as is).
+
     def arm_up(self):
         """(Moves the  arm to the up position.)"""
         self.arm_motor.run_forever(speed_sp=900)
