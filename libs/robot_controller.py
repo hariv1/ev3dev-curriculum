@@ -116,21 +116,25 @@ class Snatch3r(object):
         ev3.Sound.beep().wait()
 
 
-    def red_up(self):
-        ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
-        self.left_motor.run_to_rel_pos(speed_sp=600)
+    def red_up(self, bs):
+        if bs:
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+            self.left_motor.run_to_rel_pos(speed_sp=600)
 
-    def red_down(self):
-        ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
-        self.left_motor.run_to_rel_pos(speed_sp=-600)
+    def red_down(self, bs):
+        if bs:
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
+            self.left_motor.run_to_rel_pos(speed_sp=-600)
 
-    def blue_up(self):
-        ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
-        self.left_motor.run_to_rel_pos(speed_sp=600)
+    def blue_up(self, bs):
+        if bs:
+            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
+            self.left_motor.run_to_rel_pos(speed_sp=600)
 
-    def blue_down(self):
-        ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
-        self.left_motor.run_to_rel_pos(speed_sp=-600)
+    def blue_down(self, bs):
+        if bs:
+            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
+            self.left_motor.run_to_rel_pos(speed_sp=-600)
 
 
 
