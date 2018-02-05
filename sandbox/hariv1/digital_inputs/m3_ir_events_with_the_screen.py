@@ -66,6 +66,39 @@ def main():
     # Object that is storing references to images that can be passed into callbacks.
     dc = DataContainer()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     display_image(dc.lcd_screen, dc.eyes)  # Display an image on the EV3 screen
     ev3.Sound.speak("I R events with the Screen").wait()
 
