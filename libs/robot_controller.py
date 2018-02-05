@@ -15,11 +15,7 @@ import ev3dev.ev3 as ev3
 import math
 import time
 
-class DataContainer(object):
-    """ Helper class that might be useful to communicate between different callbacks."""
 
-    def __init__(self):
-        self.running = True
 
 class Snatch3r(object):
     """Commands for the Snatch3r robot that might be useful in many different programs."""
@@ -35,7 +31,6 @@ class Snatch3r(object):
         self.touch_sensor = ev3.TouchSensor()
         self.MAX_SPEED = 900
         self.remote_contol = ev3.RemoteControl()
-        self.dc = DataContainer
 
 
 
@@ -161,7 +156,7 @@ class Snatch3r(object):
             print("Goodbye")
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
-            self.dc.running = False
+
 
 
 
