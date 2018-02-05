@@ -88,7 +88,7 @@ def main():
     rc2.on_blue_up = lambda button_state: handle_calibrate_button(button_state, robot)
 
 
-    btn.on_backspace = lambda button_state: robot.shutdown(button_state, dc)
+    btn.on_backspace = lambda button_state: handle_shutdown(button_state, dc, robot)
 
 
 
