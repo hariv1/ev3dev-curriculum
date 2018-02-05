@@ -71,12 +71,16 @@ def arm_calibration(arm_motor, touch_sensor):
     #   Block code execution by waiting for the arm to finish running
     #   Make a beep sound
     #   Set the arm encoder position to 0 (the last line below is correct to do that, it's new so no bug there)
-
-    # Code that attempts to do this task but has MANY bugs (nearly 1 on every line).  Fix them!
-    arm_motor.run_forever(speed_sp=100)
-    while not touch_sensor:
+    # Code that attempts to do this task but has MANY bugs (nearly 1 on
+    # every line).  Fix them!
+    arm_motor.run_forever(speed_sp=MAX_SPEED)
+    while True:
+        if touch_sensor.is_pressed:
+            break
         time.sleep(0.01)
-    arm_motor.stop(stop_action="coast")
+    arm_motor.stop(stop_action="break")
+
+    arm_motor.run_forever(speed_sp=-MAX_SPEED)
 
     arm_revolutions_for_full_range = 14.2
     arm_motor.run_to_rel_pos(position_sp=-arm_revolutions_for_full_range)
