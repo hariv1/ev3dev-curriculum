@@ -135,6 +135,11 @@ def arm_down(arm_motor):
     # running
     ev3.Sound.beep().wait()
 
+    while arm_motor.run_to_abs_pos() > 14.2:
+        arm_motor.run_forever(speed_sp=MAX_SPEED)
+
+
+        
     # TODO: 6. After you fix the bugs in the three arm movement commands demo your code to a TA or instructor.
     #
     # Observations you should make, the TouchSensor is easy to use, but the motor commands are still a little bit

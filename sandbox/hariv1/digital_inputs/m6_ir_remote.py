@@ -75,10 +75,17 @@ def main():
 
     rc1 = ev3.RemoteControl(channel=1)
     rc1.on_red_up = lambda button_state:robot.red_up(button_state)
-
+    rc1.on_red_down = lambda button_state: robot.red_down(button_state)
+    rc1.on_blue_up = lambda button_state: robot.blue_up(button_state)
+    rc1.on_blue_down = lambda button_state: robot.blue_down(button_state)
+    
 
     rc2 = ev3.RemoteControl(channel=2)
-    rc2.on_red_up =
+    rc2.on_red_up = lambda button_state: handle_arm_up_button(button_state)
+    rc2.on_red_down = lambda button_state: handle_arm_down_button(button_state)
+    rc2.on_blue_up = lambda button_state: handle_calibrate_button(button_state)
+
+
 
 
 
