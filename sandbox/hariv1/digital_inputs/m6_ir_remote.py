@@ -85,7 +85,7 @@ def main():
     rc2.on_red_down = lambda button_state: handle_arm_down_button(
         button_state, robot)
     rc2.on_blue_up = lambda button_state: handle_calibrate_button(
-        button_state,robot)
+        button_state, robot)
 
 
 
