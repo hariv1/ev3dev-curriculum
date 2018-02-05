@@ -97,7 +97,7 @@ def main():
     robot.arm_calibration()  # Start with an arm calibration in this program.
 
     while dc.running:
-        # TODO: 5. Process the RemoteControl objects.
+        # DONE: 5. Process the RemoteControl objects.
         rc1.process()
         rc2.process()
         btn.process()
