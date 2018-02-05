@@ -96,6 +96,11 @@ def handle_up_button(button_state):
         print("Up button was released")
 
 
+def handle_left_button(button_state):
+    """Handle IR / button event."""
+    if button_state:
+        speak()
+
 # TODO: 6. Implement the handle_shutdown function.
 #   Function signature should be:
 #       def handle_shutdown(button_state, dc):
