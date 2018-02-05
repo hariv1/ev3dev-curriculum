@@ -104,14 +104,8 @@ def handle_down_button(button_state):
     else:
         print("Down button was released")
 
-def handle_right_button(button_state):
-    """Handle IR / button event."""
-    if button_state:
-        print("Right button is pressed")
-    else:
-        print("Right button was released")
 
- 
+
 # TODO: 6. Implement the handle_shutdown function.
 #   Function signature should be:
 #       def handle_shutdown(button_state, dc):
