@@ -71,13 +71,13 @@ def main():
 
 
     rc2 = ev3.RemoteControl(channel=2)
-    rc2.on_red_up =lambda button_state: handle_red_up_2(button_state, dc)
+    rc2.on_red_up = lambda button_state: handle_red_up_2(button_state, dc)
 
     rc3 = ev3.RemoteControl(channel=3)
-
+    rc3.on_red_up = lambda button_state: handle_red_up_3(button_state, dc)
 
     rc4 = ev3.RemoteControl(channel=4)
-
+    rc4.on_red_up = lambda button_state: handle_red_up_4(button_state, dc)
 
 
 
