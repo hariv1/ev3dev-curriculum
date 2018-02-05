@@ -66,6 +66,25 @@ def main():
     btn = ev3.Button()
     btn.on_backspace = lambda state: handle_shutdown(state, dc)
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    assert left_motor.connected
+    assert right_motor.connected
+
+    max_speed = 600
+    min_speed = -600
+    rc1 = ev3.RemoteControl(channel=1)
+    rc1.on_red_up = left_motor.run_forever(speed_sp=max_speed)
+    rc1.on_blue_up = right_motor.run_forever(speed_sp=max_speed)
+    rc1.on_red_down = left_motor.run_forever(speed_sp=min_speed)
+    rc1.on_blue_down = right_motor.run_forever(speed_sp=min_speed)
+
+
+    rc2 = ev3.RemoteControl(channel=2)
+
+
+
+
     robot.arm_calibration()  # Start with an arm calibration in this program.
 
     while dc.running:
