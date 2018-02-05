@@ -26,14 +26,21 @@ class Snatch3r(object):
     def __init__(self):
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
+        self.touch_sensor = ev3.TouchSensor()
+
 
         assert self.left_motor.connected
         assert self.right_motor.connected
+        assert self.arm_motor.connected
+        assert self.touch_sensor
 
 
     def drive_inches(self, inches_target, speed_deg_per_sec):
         """drive left and right motor, a given distance (inch), a given speed(
-        degree per second)"""
+        degree per second, drive forward if the position is positive,
+        backward if the position is negative)"""
+
         position = 90 * inches_target
         self.left_motor.run_to_rel_pos(position_sp=position,speed_sp=speed_deg_per_sec,stop_action='brake')
         self.right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed_deg_per_sec,stop_action='brake')
@@ -44,7 +51,8 @@ class Snatch3r(object):
 
     def turn_degrees(self, degrees_to_turn, turn_speed_sp):
         """turn left and right motors a given number of degree and given
-        speed(degree per second)"""
+        speed(degree per second. If the degree_to_turn is positive,
+        robot turn right. If degree_to_turn is negative, robot turn left)"""
         position = degrees_to_turn * 5
         if degrees_to_turn > 0:
             self.left_motor.run_to_rel_pos(position_sp = position,
@@ -67,6 +75,24 @@ class Snatch3r(object):
 
 
         ev3.Sound.beep().wait()
+
+    def arm_calibration(self):
+        """"(Raise the arm until it hit the touch sensor, then tern back to
+        position 0)"""
+
+    def arm_up(self):
+        """(Moves the  arm to the up position.)"""
+        self.arm_motor.run_forever(speed_sp=900)
+        while True:
+            if self.touch_sensor.is_pressed:
+                break
+            time.sleep(0.01)
+        self.arm_motor.stop(stop_action="break")
+        ev3.Sound.beep()
+
+
+    def arm_down(self):
+        """(Moves the Snatch3r arm to the down position.)"""
 
 
 
