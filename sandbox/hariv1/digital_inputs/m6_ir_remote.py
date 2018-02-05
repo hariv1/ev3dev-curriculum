@@ -160,7 +160,7 @@ def handle_calibrate_button(button_state, robot):
         robot.arm_calibration()
 
 
-def handle_shutdown(button_state, dc):
+def handle_shutdown(button_state, dc, robot):
     """
     Exit the program.
 
@@ -170,6 +170,10 @@ def handle_shutdown(button_state, dc):
     """
     if button_state:
         dc.running = False
+
+    time.sleep(0.01)
+    robot.shutdown()
+
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
