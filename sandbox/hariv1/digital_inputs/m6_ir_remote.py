@@ -80,6 +80,10 @@ def main():
     rc1.on_blue_down = right_motor.run_forever(speed_sp=min_speed)
 
 
+    rc2 = ev3.RemoteControl(channel=2)
+
+
+
 
     robot.arm_calibration()  # Start with an arm calibration in this program.
 
