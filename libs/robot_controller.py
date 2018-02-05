@@ -120,26 +120,27 @@ class Snatch3r(object):
         if bs:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
             self.left_motor.run_forever(speed_sp=600)
-            self.left_motor.wait_while(self.left_motor.STATE_RUNNING)
+
+
 
 
     def red_down(self, bs):
         if bs:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
             self.left_motor.run_forever(speed_sp=-600)
-            self.left_motor.wait_while(self.left_motor.STATE_RUNNING)
+
 
     def blue_up(self, bs):
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
             self.right_motor.run_forever(speed_sp=600)
-            self.right_motor.wait_while(self.left_motor.STATE_RUNNING)
+
 
     def blue_down(self, bs):
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
             self.right_motor.run_forever(speed_sp=-600)
-            self.right_motor.wait_while(self.left_motor.STATE_RUNNING)
+
 
 
 
