@@ -32,7 +32,7 @@ def main():
         if command_to_run == 'c':
             print("Calibrate the arm")
             print("TODO: 3 is to delete this print statement, uncomment the line below, and implement that function.")
-            # arm_calibration(arm_motor, touch_sensor)
+            arm_calibration(arm_motor, touch_sensor)
         elif command_to_run == 'u':
             print("Move the arm to the up position")
             print("TODO: 4 is to delete this print statement, uncomment the line below, and implement that function.")
@@ -80,6 +80,7 @@ def arm_calibration(arm_motor, touch_sensor):
         time.sleep(0.01)
     arm_motor.stop(stop_action="break")
     ev3.Sound.beep()
+
 
     arm_revolutions_for_full_range = 14.2
     arm_motor.run_to_rel_pos(position_sp=-arm_revolutions_for_full_range)
