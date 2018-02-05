@@ -28,18 +28,23 @@ def main():
         # Tip for later, try a negative value for Number of sides: to drive CW around the polygon instead of CCW.
         if sides == 0:
             break
-        robot.turn_degrees(360/sides, speed_deg_per_second)
+        turn_amount = 360 / sides
 
         edge_length_in = int(input("Length of each edge (inches): "))
         if edge_length_in == 0:
             break
 
-        # TODO: 2. Individually implement the code here to use your drive_inches and turn_degrees library methods to
-        # drive a polygon with the correct number of sides. (Hint: You will add 3 lines of code. What are they?
+        # DONE: 2. Individually implement the code here to use your
+        # drive_inches and turn_degrees library methods to
+        # drive a polygon with the correct number of sides. (Hint: You will add 3 lines of code. What are they?).
+        for k in range(sides):
+            robot.drive_inches(edge_length_in, speed_deg_per_second)
+            robot.turn_degrees(turn_amount, speed_deg_per_second)
 
 
 
-        # TODO: 3. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
+        # DONE: 3. Call over a TA or instructor to sign your team's checkoff
+            # sheet and do a code review.
         #   You are done with the Motors unit!
         #
         # Observations you should make, by making library functions you can make this program in only 3 lines of code.
