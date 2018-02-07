@@ -158,7 +158,7 @@ class Snatch3r(object):
         self.right_motor.stop()
         self.arm_motor.stop()
 
-    def loop_running(self):
+    def loop_forever(self):
         self.running = True
         while self.running:
             time.sleep(0.1)
