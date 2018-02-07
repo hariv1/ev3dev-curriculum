@@ -106,6 +106,12 @@ def main():
                                                   left_speed_entry,
                                              right_speed_entry))
 
+    stop_button = ttk.Button(main_frame, text="Stop")
+    stop_button.grid(row=3, column=1)
+    # stop_button and '<space>' key (note, does not need left_speed_entry, right_speed_entry)
+    stop_button['command'] = lambda: callback_stop(mqtt_client)
+    root.bind('<Stop>',lambda event: callback_stop(mqtt_client))
+
 
     up_button = ttk.Button(main_frame, text="Up")
     up_button.grid(row=5, column=0)
@@ -148,7 +154,7 @@ def callback_left(mqtt_client, left_speed_entry, right_speed_entry):
 def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
     print("Right")
     mqtt_client.send_message("right", [int(left_speed_entry.get()),
-                                      int(right_speed_entry.get())])
+                                       int(right_speed_entry.get())])
 
 
 def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
@@ -159,9 +165,6 @@ def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
 def callback_stop(mqtt_client):
     print("Stop")
     mqtt_client.send_message("stop")
-
-
-
 
 
 
