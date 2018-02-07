@@ -82,6 +82,13 @@ def main():
     stop_button = ttk.Button(main_frame, text="Stop")
     stop_button.grid(row=3, column=1)
     # stop_button and '<space>' key (note, does not need left_speed_entry, right_speed_entry)
+    stop_button['command'] = lambda: callback_stop(mqtt_client,
+                                                     left_speed_entry,
+                                                     right_speed_entry)
+    root.bind('<Stop>',
+              lambda event: callback_stop(mqtt_client, left_speed_entry,
+                                           right_speed_entry))
+
 
     right_button = ttk.Button(main_frame, text="Right")
     right_button.grid(row=3, column=2)
@@ -131,7 +138,22 @@ def main():
 # ----------------------------------------------------------------------
 # TODO: 4. Implement the functions for the drive button callbacks.
 def callback_forward(mqtt_client, left_speed_entry, right_speed_entry):
-    
+
+
+def callback_left(mqtt_client, left_speed_entry, right_speed_entry):
+
+
+def callback_stop(mqtt_client, left_speed_entry, right_speed_entry):
+
+
+def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
+
+
+def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
+
+
+def
+
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
 # Observations you should make, you did basically this same program using the IR Remote, but your computer can be a
