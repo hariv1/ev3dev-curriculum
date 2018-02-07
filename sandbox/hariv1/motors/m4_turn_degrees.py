@@ -50,9 +50,9 @@ def main():
     # You are not allowed to make any changes to this code.
     # --------------------------------------------------------------
     print("--------------------------------------------")
-    print(" Drive inches")
+    print(" Turn Degrees")
     print("--------------------------------------------")
-    ev3.Sound.speak("Drive inches").wait()
+    ev3.Sound.speak("Turn Degrees").wait()
     robot = robo.Snatch3r()
 
     while True:
