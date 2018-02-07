@@ -26,10 +26,17 @@ import mqtt_remote_method_calls as com
 
 # TODO: 2. Create a class. Feel free to call it MyDelegate.
 # Within that class you don't even need an __init__ constructor (an empty constructor comes for free)
+class MyDelegate(object):
 
 # TODO: 3. Create a method named guess_response within MyDelegate.
 # guess_response needs to receive self and a string, feel free to call the string parameter message_from_ev3
 # within the body of the method print message_from_ev3.  That's it.  You simply need to hear what EV3 tells you.
+
+def guess_response(self, mqtt_broker_ip_address="mosquitto.csse.rose-hulman"
+                                                ".edu", lego_robot_number=29):
+
+    self.connect("msg4pc", "msg4ev3", mqtt_broker_ip_address,
+                 lego_robot_number)
 
 
 def main():
@@ -75,7 +82,7 @@ def main():
 def guess(mqtt_client, number_to_guess_entry):
     """ Calls a method on EV3 called 'guess' passing in an int from the number_to_guess_entry. """
     # TODO: 5. Uncomment the line of code below to make guesses with EV3.
-    # mqtt_client.send_message("guess", [int(number_to_guess_entry.get())])
+    mqtt_client.send_message("guess", [int(number_to_guess_entry.get())])
     number_to_guess_entry.delete(0, 'end')
     # Note: You can play the game with only TO DO 5 complete, but it will be easier to solve if you do TO DO 6 as well.
 
