@@ -28,6 +28,7 @@ Authors: David Fisher and PUT_YOUR_NAME_HERE.
 import tkinter
 from tkinter import ttk
 
+
 import mqtt_remote_method_calls as com
 
 
@@ -35,7 +36,9 @@ def main():
     # done: 2. Setup an mqtt_client.  Notice that since you don't need to
     # receive any messages you do NOT need to have
     # a MyDelegate class.  Simply construct the MqttClient with no parameter in the constructor (easy).
-    mqtt_client = com.MqttClient()# Delete this line, it was added temporarily so that the code we gave you had no errors.
+    # Delete this line, it was added temporarily so that the code we gave you had no errors.
+
+    mqtt_client = com.MqttClient()
 
     mqtt_client.connect_to_ev3()
 
@@ -70,6 +73,10 @@ def main():
                                                  left_speed_entry, right_speed_entry)
     root.bind('<Up>', lambda event: callback_forward(mqtt_client, left_speed_entry, right_speed_entry))
 
+
+
+
+
     left_button = ttk.Button(main_frame, text="Left")
     left_button.grid(row=3, column=0)
     # left_button and '<Left>' key
@@ -78,16 +85,6 @@ def main():
                                                     right_speed_entry)
     root.bind('<Left>', lambda event: callback_left(mqtt_client,
                                                      left_speed_entry, right_speed_entry))
-
-    stop_button = ttk.Button(main_frame, text="Stop")
-    stop_button.grid(row=3, column=1)
-    # stop_button and '<space>' key (note, does not need left_speed_entry, right_speed_entry)
-    stop_button['command'] = lambda: callback_stop(mqtt_client,
-                                                     left_speed_entry,
-                                                     right_speed_entry)
-    root.bind('<Stop>',
-              lambda event: callback_stop(mqtt_client, left_speed_entry,
-                                           right_speed_entry))
 
 
     right_button = ttk.Button(main_frame, text="Right")
@@ -106,8 +103,8 @@ def main():
     back_button['command'] = lambda: callback_back(mqtt_client,
                                                          left_speed_entry,
                                                          right_speed_entry)
-    root.bind('<Up>',
-              lambda event: callback_back(mqtt_client, left_speed_entry,
+    root.bind('<Up>', lambda event: callback_back(mqtt_client,
+                                                  left_speed_entry,
                                              right_speed_entry))
 
 
@@ -136,24 +133,35 @@ def main():
 # ----------------------------------------------------------------------
 # Tkinter callbacks
 # ----------------------------------------------------------------------
-# TODO: 4. Implement the functions for the drive button callbacks.
+# DONE: 4. Implement the functions for the drive button callbacks.
 def callback_forward(mqtt_client, left_speed_entry, right_speed_entry):
+    print("Forward")
+    mqtt_client.send_message("red_up",[int(left_speed_entry.get())])
+    mqtt_client.send_message("blue_up",[int(right_speed_entry.get())])
 
 
 def callback_left(mqtt_client, left_speed_entry, right_speed_entry):
-
-
-def callback_stop(mqtt_client, left_speed_entry, right_speed_entry):
+    print("Left")
+    mqtt_client.send_message("red_up",[int(left_speed_entry.get())])
 
 
 def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
+    print("Right")
+    mqtt_client.send_message("blue_up",[int(right_speed_entry.get())])
 
 
 def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
+    print("Back")
+    mqtt_client.send_message("blue_down", [int(right_speed_entry.get())])
+    mqtt_client.send_message("red_down", [int(left_speed_entry.get())])
 
 
 
-# TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
+
+
+
+# DONE: 5. Call over a TA or instructor to sign your team's checkoff sheet
+# and do a code review.  This is the final one!
 #
 # Observations you should make, you did basically this same program using the IR Remote, but your computer can be a
 # remote control that can do A LOT more than an IR Remote.  We are just doing the basics here.
