@@ -7,7 +7,7 @@ It's a puzzle you have to solve.  If you look at the code it'll give away the fu
 
 All of your coding will be done within m4_pc_petals_on_a_rose.py, open that file.
 
-Author: David Fisher.
+Author: David Fisher.n
 """
 
 # DONE: 1. Have someone on your team run this module on the EV3.  It uses the
