@@ -156,6 +156,10 @@ def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
     mqtt_client.send_message("back", [int(left_speed_entry.get()),
                                       int(right_speed_entry.get())])
 
+def callback_stop(mqtt_client):
+    print("Stop")
+    mqtt_client.send_message("stop")
+
 
 
 
