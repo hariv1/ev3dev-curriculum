@@ -170,6 +170,20 @@ class Snatch3r(object):
         self.left_motor.run_forever(speed_sp = speed_left)
         self.right_motor.run_forever(speed_sp = speed_right)
 
+    def left(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = speed_left)
+        self.right_motor.run_forever(speed_sp= -speed_right)
+
+    def right(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = -speed_left)
+        self.right_motor.run_forever(speed_sp = speed_right)
+
+    def back(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = -speed_left)
+        self.right_motor.run_forever(speed_sp = -speed_right)
+
+
+
 
 
 
