@@ -182,7 +182,9 @@ class Snatch3r(object):
         self.left_motor.run_forever(speed_sp = -speed_left)
         self.right_motor.run_forever(speed_sp = -speed_right)
 
-
+    def stop(self):
+        self.left_motor.stop()
+        self.right_motor.stop()
 
 
 
