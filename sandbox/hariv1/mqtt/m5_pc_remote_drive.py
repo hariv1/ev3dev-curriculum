@@ -110,7 +110,7 @@ def main():
     stop_button.grid(row=3, column=1)
     # stop_button and '<space>' key (note, does not need left_speed_entry, right_speed_entry)
     stop_button['command'] = lambda: callback_stop(mqtt_client)
-    root.bind('<Stop>',lambda event: callback_stop(mqtt_client))
+    root.bind('<space>', lambda event: callback_stop(mqtt_client))
 
 
     up_button = ttk.Button(main_frame, text="Up")
