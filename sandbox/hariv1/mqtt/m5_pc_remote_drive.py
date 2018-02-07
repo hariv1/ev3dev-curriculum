@@ -141,19 +141,21 @@ def callback_forward(mqtt_client, left_speed_entry, right_speed_entry):
 
 def callback_left(mqtt_client, left_speed_entry, right_speed_entry):
     print("Left")
-    mqtt_client.send_message("red_up", [int(left_speed_entry.get())])
-    mqtt_client.send_message("blue_down", [int(right_speed_entry.get())])
+    mqtt_client.send_message("left", [int(left_speed_entry.get()),
+                                      int(right_speed_entry.get())])
 
 
 def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
     print("Right")
-    mqtt_client.send_message("blue_up", [int(right_speed_entry.get())])
-    mqtt_client.send_message("red_down", [int(left_speed_entry.get())])
+    mqtt_client.send_message("right", [int(left_speed_entry.get()),
+                                      int(right_speed_entry.get())])
+
 
 def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
     print("Back")
-    mqtt_client.send_message("blue_down", [int(right_speed_entry.get())])
-    mqtt_client.send_message("red_down", [int(left_speed_entry.get())])
+    mqtt_client.send_message("back", [int(left_speed_entry.get()),
+                                      int(right_speed_entry.get())])
+
 
 
 
