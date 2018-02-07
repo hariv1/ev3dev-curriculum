@@ -66,16 +66,17 @@ def main():
     forward_button = ttk.Button(main_frame, text="Forward")
     forward_button.grid(row=2, column=1)
     # forward_button and '<Up>' key is done for your here...
-    forward_button['command'] = lambda: some_callback1(mqtt_client, left_speed_entry, right_speed_entry)
-    root.bind('<Up>', lambda event: some_callback1(mqtt_client, left_speed_entry, right_speed_entry))
+    forward_button['command'] = lambda: callback_forward(mqtt_client,
+                                                 left_speed_entry, right_speed_entry)
+    root.bind('<Up>', lambda event: callback_forward(mqtt_client, left_speed_entry, right_speed_entry))
 
     left_button = ttk.Button(main_frame, text="Left")
     left_button.grid(row=3, column=0)
     # left_button and '<Left>' key
-    left_button['command'] = lambda: some_callback2(mqtt_client,
+    left_button['command'] = lambda: callback_left(mqtt_client,
                                                     left_speed_entry,
                                                     right_speed_entry)
-    root.bind('<left>', lambda event: some_callback2(mqtt_client,
+    root.bind('<Left>', lambda event: callback_left(mqtt_client,
                                                      left_speed_entry, right_speed_entry))
 
     stop_button = ttk.Button(main_frame, text="Stop")
@@ -85,10 +86,23 @@ def main():
     right_button = ttk.Button(main_frame, text="Right")
     right_button.grid(row=3, column=2)
     # right_button and '<Right>' key
+    right_button['command'] = lambda: callback_right(mqtt_client,
+                                                         left_speed_entry,
+                                                         right_speed_entry)
+    root.bind('<Right>',
+              lambda event: callback_right(mqtt_client, left_speed_entry,
+                                             right_speed_entry))
 
     back_button = ttk.Button(main_frame, text="Back")
     back_button.grid(row=4, column=1)
     # back_button and '<Down>' key
+    back_button['command'] = lambda: callback_back(mqtt_client,
+                                                         left_speed_entry,
+                                                         right_speed_entry)
+    root.bind('<Up>',
+              lambda event: callback_back(mqtt_client, left_speed_entry,
+                                             right_speed_entry))
+
 
     up_button = ttk.Button(main_frame, text="Up")
     up_button.grid(row=5, column=0)
@@ -116,7 +130,8 @@ def main():
 # Tkinter callbacks
 # ----------------------------------------------------------------------
 # TODO: 4. Implement the functions for the drive button callbacks.
-
+def callback_forward(mqtt_client, left_speed_entry, right_speed_entry):
+    
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
 # Observations you should make, you did basically this same program using the IR Remote, but your computer can be a
