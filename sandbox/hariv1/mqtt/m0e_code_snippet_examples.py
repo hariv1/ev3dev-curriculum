@@ -6,7 +6,7 @@ These are just snippets used in the lecture, not actual code to run!
 TODO: 1. PASSIVELY LISTEN TO THE LECTURE ABOUT MQTT
 https://docs.google.com/presentation/d/1gQt1K4X2xzcspKMn2S0X98vhzVNmLA-xoQe5rp58CVE/edit?usp=sharing
 
-Author: David Fisher
+Author: David Fishern
 """
 
 import ev3dev.ev3 as ev3
