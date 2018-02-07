@@ -40,6 +40,8 @@ class DataContainer(object):
 
     def __init__(self):
         self.running = True
+        self.color_sensor = ev3.ColorSensor()
+        assert self.color_sensor
 
 
 def main():
@@ -87,11 +89,10 @@ def drive_to_color(button_state, robot, color_to_seek):
       :type robot: robo.Snatch3r
       :type color_to_seek: int
     """
-    current_color = ev3.ColorSensor.color
+
+    current_color = robot.color_sensor
     if button_state:
-        robot.forward
-        if color_to_seek == current_color:
-            ev3.Sound.speak("Seeking " + COLOR_NAMES[color_to_seek]).wait()
+        ev3.Sound.speak("Seeking " + COLOR_NAMES[color_to_seek]).wait()
 
         # done: 3. Implement the task as stated in this module's initial
         # comment block
