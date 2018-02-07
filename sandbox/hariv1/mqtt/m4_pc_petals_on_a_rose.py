@@ -15,7 +15,7 @@ number of dice to help you figure out the pattern more quickly.
 
 To check off this part of the assignment win the game (without looking at the EV3 code).
 
-Authors: David Fisher and Vikram Hari.
+Authors: David Fisher and Vikram Harin.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
