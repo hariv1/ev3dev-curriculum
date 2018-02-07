@@ -152,17 +152,39 @@ class Snatch3r(object):
             self.right_motor.stop()
 
     def shutdown(self):
+        self.running = False
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
         ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
         self.left_motor.stop()
         self.right_motor.stop()
         self.arm_motor.stop()
 
+
     def loop_forever(self):
         self.running = True
         while self.running:
             time.sleep(0.1)
 
+
+    def forward(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = speed_left)
+        self.right_motor.run_forever(speed_sp = speed_right)
+
+    def left(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = speed_left)
+        self.right_motor.run_forever(speed_sp= -speed_right)
+
+    def right(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = -speed_left)
+        self.right_motor.run_forever(speed_sp = speed_right)
+
+    def back(self, speed_left, speed_right):
+        self.left_motor.run_forever(speed_sp = -speed_left)
+        self.right_motor.run_forever(speed_sp = -speed_right)
+
+    def stop(self):
+        self.left_motor.stop()
+        self.right_motor.stop()
 
 
 
