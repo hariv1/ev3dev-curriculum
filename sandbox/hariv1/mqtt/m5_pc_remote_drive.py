@@ -152,7 +152,6 @@ def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
 def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
 
 
-def
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
