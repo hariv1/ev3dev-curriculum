@@ -89,7 +89,7 @@ def main():
 # Tkinter callbacks
 # ----------------------------------------------------------------------
 def send_led_command(mqtt_client, led_side, led_color):
-    print("Sending LED side = {}  LED color = {}".format(led_side, led_color))
+    print("Sending LED side = {}, LED color = {}".format(led_side, led_color))
     mqtt_client.send_message("set_led", [led_side, led_color])
 
 
