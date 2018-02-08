@@ -82,7 +82,7 @@ def follow_the_line(robot, white_level, black_level):
     # should drive straight or turn to the right.  You will need to test and refine your code until it works well.
     # Optional extra - For a harder challenge could you drive on the black line and handle left or right turns?
 
-    speed = int(input("What speedfo you desire robot to move at?"))
+    speed = int(input("What speed do you desire robot to move at?"))
 
     while True:
 
