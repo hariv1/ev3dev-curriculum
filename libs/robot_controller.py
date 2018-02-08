@@ -228,6 +228,10 @@ class Snatch3r(object):
                     # You add more!
                     if current_distance <= 5:
                         self.stop()
+                        self.arm_up()
+                        time.sleep(1)
+                        self.arm_down()
+                        time.sleep(1)
                         return True
                     elif current_distance > 5:
                         self.forward(forward_speed, forward_speed)
