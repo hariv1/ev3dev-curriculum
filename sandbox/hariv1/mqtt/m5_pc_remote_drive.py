@@ -102,7 +102,7 @@ def main():
     back_button['command'] = lambda: callback_back(mqtt_client,
                                                          left_speed_entry,
                                                          right_speed_entry)
-    root.bind('<Up>', lambda event: callback_back(mqtt_client,
+    root.bind('<Down>', lambda event: callback_back(mqtt_client,
                                                   left_speed_entry,
                                              right_speed_entry))
 
