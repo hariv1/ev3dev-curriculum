@@ -75,7 +75,7 @@ def seek_beacon(robot):
             print("IR Remote not found. Distance is -128")
             robot.stop()
         else:
-            # TODO: 4. Implement the following strategy to find the beacon.
+            # DONE: 4. Implement the following strategy to find the beacon.
             # If the absolute value of the current_heading is less than 2, you are on the right heading.
             #     If the current_distance is 0 return from this function, you have found the beacon!  return True
             #     If the current_distance is greater than 0 drive straight forward (forward_speed, forward_speed)
@@ -96,14 +96,15 @@ def seek_beacon(robot):
                 # Close enough of a heading to move forward
                 print("On the right heading. Distance: ", current_distance)
                 # You add more!
-                if current_distance <= 3:
+                if current_distance <= 5:
+                    robot.stop()
                     return True
-                elif current_distance > 3:
+                elif current_distance > 5:
                     robot.forward(forward_speed, forward_speed)
                     print(current_distance)
                     print(current_heading)
 
-            elif math.fabs(current_heading) < 10 and math.fabs(
+            elif math.fabs(current_heading) < 15 and math.fabs(
                     current_heading) > 2:
 
                 print("Adjusting heading")
@@ -114,7 +115,7 @@ def seek_beacon(robot):
                     robot.left(turn_speed, turn_speed)
 
 
-            elif math.fabs(current_heading) > 10:
+            elif math.fabs(current_heading) > 15:
                 robot.stop()
                 print("Heading too far")
                 print(current_distance)
@@ -134,7 +135,8 @@ def seek_beacon(robot):
     robot.stop()
     return False
 
-    # TODO: 6. Demo your program by putting the beacon within a few feet of the robot, within 30 degrees of straight in
+    # DONE: 6. Demo your program by putting the beacon within a few feet of the
+    #  robot, within 30 degrees of straight in
     # front.  The robot should drive to and stop at the beacon.  After a successful run move the beacon then do it again
     # for the demo.  During testing if your robot fails to find the beacon remember that you can press the touch sensor
     # to abandon ship on the attempt. ;) You must demo 2 successful finds to check off but you can have as many attempts
