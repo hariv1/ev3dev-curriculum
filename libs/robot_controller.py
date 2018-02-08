@@ -33,7 +33,9 @@ class Snatch3r(object):
         self.MAX_SPEED = 900
         self.remote_contol = ev3.RemoteControl()
         self.color_sensor = ev3.ColorSensor()
+        self.ir_sensor = ev3.InfraredSensor()
 
+        assert self.ir_sensor
         assert self.color_sensor
         assert self.left_motor.connected
         assert self.right_motor.connected
@@ -185,6 +187,76 @@ class Snatch3r(object):
     def stop(self):
         self.left_motor.stop()
         self.right_motor.stop()
+
+    def seek_beacon(self):
+        my_becon_seeker = ev3.BeaconSeeker(channel=1)
+
+        forward_speed = 300
+        turn_speed = 100
+
+        while not self.touch_sensor.is_pressed:
+
+            current_heading = my_becon_seeker.heading
+            current_distance = my_becon_seeker.distance
+            if current_distance == -128:
+                self.stop()
+                print("IR Remote not found. Distance is -128. Turning in "
+                      "attempt to find the beacon!")
+                self.right(turn_speed, turn_speed)
+
+            else:
+                # DONE: 4. Implement the following strategy to find the beacon.
+                # If the absolute value of the current_heading is less than 2, you are on the right heading.
+                #     If the current_distance is 0 return from this function, you have found the beacon!  return True
+                #     If the current_distance is greater than 0 drive straight forward (forward_speed, forward_speed)
+                # If the absolute value of the current_heading is NOT less than 2 but IS less than 10, you need to spin
+                #     If the current_heading is less than 0 turn left (-turn_speed, turn_speed)
+                #     If the current_heading is greater than 0 turn right  (turn_speed, -turn_speed)
+                # If the absolute value of current_heading is greater than 10, then stop and print Heading too far off
+                #
+                # Using that plan you should find the beacon if the beacon is in range.  If the beacon is not in range your
+                # robot should just sit still until the beacon is placed into view.  It is recommended that you always print
+                # something each pass through the loop to help you debug what is going on.  Examples:
+                #    print("On the right heading. Distance: ", current_distance)
+                #    print("Adjusting heading: ", current_heading)
+                #    print("Heading is too far off to fix: ", current_heading)
+
+                # Here is some code to help get you started
+                if math.fabs(current_heading) < 2:
+                    # Close enough of a heading to move forward
+                    print("On the right heading. Distance: ", current_distance)
+                    # You add more!
+                    if current_distance <= 5:
+                        self.stop()
+                        return True
+                    elif current_distance > 5:
+                        self.forward(forward_speed, forward_speed)
+
+                elif math.fabs(current_heading) < 15 and math.fabs(
+                        current_heading) > 2:
+
+                    print("Adjusting heading")
+                    if current_heading < 0:
+                        self.right(turn_speed, turn_speed)
+
+                    elif current_heading > 0:
+                        self.left(turn_speed, turn_speed)
+
+
+                elif math.fabs(current_heading) > 15:
+                    self.stop()
+                    print("Heading too far. Turning in attempt to find "
+                          "beacon!")
+                    self.right(turn_speed, turn_speed)
+
+
+
+            time.sleep(0.2)
+
+        # The touch_sensor was pressed to abort the attempt if this code runs.
+        print("Abandon ship!")
+        self.stop()
+        return False
 
 
 
