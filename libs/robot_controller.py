@@ -118,8 +118,11 @@ class Snatch3r(object):
 
     def arm_down(self):
         """(Moves the Snatch3r arm to the down position.)"""
+        print("moving")
         self.arm_motor.run_to_abs_pos(position_sp=0, speed_sp=900)
+        print("moving")
         self.arm_motor.wait_while(self.arm_motor.STATE_RUNNING)
+        print("moving")
         ev3.Sound.beep().wait()
 
 
