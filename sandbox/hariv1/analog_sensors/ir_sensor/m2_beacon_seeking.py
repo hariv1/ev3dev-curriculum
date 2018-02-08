@@ -101,8 +101,6 @@ def seek_beacon(robot):
                     return True
                 elif current_distance > 5:
                     robot.forward(forward_speed, forward_speed)
-                    print(current_distance)
-                    print(current_heading)
 
             elif math.fabs(current_heading) < 15 and math.fabs(
                     current_heading) > 2:
@@ -118,8 +116,7 @@ def seek_beacon(robot):
             elif math.fabs(current_heading) > 15:
                 robot.stop()
                 print("Heading too far")
-                print(current_distance)
-                print(current_heading)
+
 
 
 
