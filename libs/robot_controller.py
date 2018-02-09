@@ -178,12 +178,12 @@ class Snatch3r(object):
         self.right_motor.run_forever(speed_sp = speed_right)
 
     def left(self, speed_left, speed_right):
-        self.left_motor.run_forever(speed_sp = speed_left)
-        self.right_motor.run_forever(speed_sp= -speed_right)
+        self.left_motor.run_forever(speed_sp = -speed_left)
+        self.right_motor.run_forever(speed_sp= speed_right)
 
     def right(self, speed_left, speed_right):
-        self.left_motor.run_forever(speed_sp = -speed_left)
-        self.right_motor.run_forever(speed_sp = speed_right)
+        self.left_motor.run_forever(speed_sp = speed_left)
+        self.right_motor.run_forever(speed_sp = -speed_right)
 
     def back(self, speed_left, speed_right):
         self.left_motor.run_forever(speed_sp = -speed_left)
@@ -241,7 +241,7 @@ class Snatch3r(object):
                     elif current_distance > 5:
                         self.forward(forward_speed, forward_speed)
 
-                elif math.fabs(current_heading) < 15 and math.fabs(
+                elif math.fabs(current_heading) < 10 and math.fabs(
                         current_heading) > 2:
 
                     print("Adjusting heading")
@@ -252,7 +252,7 @@ class Snatch3r(object):
                         self.left(turn_speed, turn_speed)
 
 
-                elif math.fabs(current_heading) > 15:
+                elif math.fabs(current_heading) > 10:
                     self.stop()
                     print("Heading too far. Turning in attempt to find "
                           "beacon!")
