@@ -87,11 +87,9 @@ def follow_the_line(robot, white_level, black_level):
     while True:
 
         if robot.color_sensor.reflected_light_intensity >= white_level:
-            robot.stop()
             robot.forward(speed, speed)
 
         elif robot.color_sensor.reflected_light_intensity <= black_level:
-            robot.stop()
             robot.right(speed, speed)
 
         elif robot.touch_sensor.is_pressed:
