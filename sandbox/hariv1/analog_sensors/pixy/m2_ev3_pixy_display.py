@@ -25,11 +25,13 @@ def main():
     # send data, so an empty constructor is fine)
     # Then connect to the pc using the connect_to_pc method.
 
-    mqtt_client = com.MqttClient()
-    mqtt_client.connect_to_pc()
-
     robot = robo.Snatch3r()
     robot.pixy.mode = "SIG1"
+
+    mqtt_client = com.MqttClient(robot)
+    mqtt_client.connect_to_pc()
+
+
 
     while not robot.touch_sensor.is_pressed:
 
@@ -37,16 +39,14 @@ def main():
         # Print the values (much like the print_pixy_readings example)
 
         x = robot.pixy.value(1)
-        print(x)
-
         y = robot.pixy.value(2)
-        print(y)
-
         width = robot.pixy.value(3)
-        print(width)
-
         height = robot.pixy.value(4)
-        print(height)
+
+        print("value1: X", x)
+        print("value2: Y", y)
+        print("value3: Width", width)
+        print("value4: Height", height)
 
 
         # DONE: 4. Send the Pixy values to the PC by calling the
