@@ -3,6 +3,7 @@ import tkinter
 import time
 from tkinter import ttk
 import mqtt_remote_method_calls as com
+import Mission_1
 
 def main():
 
@@ -40,9 +41,20 @@ def main_interface(root):
     frame_2 = ttk.Frame(new_game_window,padding=200)
     frame_2.grid()
 
-    mission_1_button = ttk.Button(frame_2, text="Mission 1:\nA New Era")
+    mission_1_button = tkinter.Button(frame_2, text="Mission 1\nA New Era")
     mission_1_button.grid(row=0, column=0)
-    mission_1_button['command'] = lambda:
+    if __name__ == '__main__':
+        mission_1_button['command'] = lambda: Mission_1.main()
+
+    mission_2_button = tkinter.Button(frame_2, text="Mission 2\n")
+    mission_2_button.grid(row=1, column=0)
+    mission_2_button['command'] = lambda: Mission_2.main()
+
+    mission_2_button = tkinter.Button(frame_2, text="Mission 2\n")
+    mission_2_button.grid(row=1, column=0)
+    mission_2_button['command'] = lambda: Mission_3.main()
+
+
 
 
 
