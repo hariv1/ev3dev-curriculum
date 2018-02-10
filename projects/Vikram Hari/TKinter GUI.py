@@ -52,7 +52,7 @@ def main_interface(root):
     mission_1_button = tkinter.Button(frame_2, text="Mission 1\nFind "
                                                     "Controller")
     mission_1_button.grid(row=1, column=0, pady= 20)
-    mission_1_button['command'] = lambda: Mission_1.main()
+    mission_1_button['command'] = mqtt_client.send_message()
 
     mission_2_button = tkinter.Button(frame_2, text="Mission 2\nDrive back "
                                                     "via Satellite")
