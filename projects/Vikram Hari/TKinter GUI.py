@@ -1,6 +1,5 @@
 
 import tkinter
-import time
 from tkinter import ttk
 import mqtt_remote_method_calls as com
 import Mission_1
@@ -50,9 +49,9 @@ def main_interface(root):
     mission_2_button.grid(row=1, column=0)
     mission_2_button['command'] = lambda: Mission_2.main()
 
-    mission_2_button = tkinter.Button(frame_2, text="Mission 2\n")
-    mission_2_button.grid(row=1, column=0)
-    mission_2_button['command'] = lambda: Mission_3.main()
+    mission_3_button = tkinter.Button(frame_2, text="Mission 3\n")
+    mission_3_button.grid(row=1, column=0)
+    mission_3_button['command'] = lambda: Mission_3.main()
 
 
 
