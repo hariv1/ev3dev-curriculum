@@ -16,6 +16,7 @@ def main():
 
     start_game_button = ttk.Button(main_frame, text="Start Game")
     start_game_button.grid(row=1, column=0)
+    start_game_button['command'] = lambda:
 
     exit_game_button = ttk.Button(main_frame, text="End Game")
     exit_game_button.grid(row=2, column=0)
