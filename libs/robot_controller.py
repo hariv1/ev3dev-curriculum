@@ -141,6 +141,8 @@ class Snatch3r(object):
             self.right_motor.stop()
 
     def blue_down(self, bs):
+        """(If the button is pressed, set the right LED to red and turn the
+        right motor backwards.)"""
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
             self.right_motor.run_forever(speed_sp=-600)
