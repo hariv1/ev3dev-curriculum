@@ -181,6 +181,7 @@ class Snatch3r(object):
         self.right_motor.stop()
 
     def seek_beacon(self):
+        """(Seeks beacon using IR sensor)."""
 
         my_beacon_seeker = ev3.BeaconSeeker(channel=1)
 
