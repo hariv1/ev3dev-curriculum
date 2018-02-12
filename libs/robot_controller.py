@@ -27,12 +27,12 @@ class Snatch3r(object):
     def __init__(self):
 
         self.MAX_SPEED = 900
+        self.running = True
 
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.touch_sensor = ev3.TouchSensor()
-
         self.remote_contol = ev3.RemoteControl()
         self.color_sensor = ev3.ColorSensor()
         self.ir_sensor = ev3.InfraredSensor()
@@ -91,13 +91,14 @@ class Snatch3r(object):
         """"(Raise the arm until it hit the touch sensor, then tern back to
         position 0)"""
 
-        self.arm_motor.run_forever(speed_sp=self.MAX_SPEED)
+        self.arm_motor.run_forever(speed_sp= self.MAX_SPEED)
         while True:
             if self.touch_sensor.is_pressed:
                 break
             time.sleep(0.01)
         self.arm_motor.stop(stop_action="brake")
         ev3.Sound.beep()
+
         arm_revolutions_for_full_range = 14.2 * 360
         self.arm_motor.run_to_rel_pos(
             position_sp=-arm_revolutions_for_full_range,
@@ -105,8 +106,7 @@ class Snatch3r(object):
         self.arm_motor.wait_while(self.arm_motor.STATE_RUNNING)
         ev3.Sound.beep()
 
-        self.arm_motor.position = 0  # Calibrate the down position as 0 (this
-        # line is correct as is).
+        self.arm_motor.position = 0
 
     def arm_up(self):
         """(Moves the  arm to the up position.)"""
@@ -125,6 +125,7 @@ class Snatch3r(object):
         ev3.Sound.beep().wait()
 
     def red_up(self, bs):
+        """(Moves the left motor of the robot forward)."""
         if bs:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
             self.left_motor.run_forever(speed_sp=600)
@@ -132,6 +133,7 @@ class Snatch3r(object):
             self.left_motor.stop()
 
     def red_down(self, bs):
+        """(Moves the left motor of the robot backward)."""
         if bs:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
             self.left_motor.run_forever(speed_sp=-600)
@@ -140,6 +142,7 @@ class Snatch3r(object):
             self.left_motor.stop()
 
     def blue_up(self, bs):
+        """(Moves the right motor of the robot forward)."""
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
             self.right_motor.run_forever(speed_sp=600)
@@ -147,6 +150,7 @@ class Snatch3r(object):
             self.right_motor.stop()
 
     def blue_down(self, bs):
+        """(Moves the right motor of the robot backward)."""
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
             self.right_motor.run_forever(speed_sp=-600)
@@ -155,6 +159,7 @@ class Snatch3r(object):
 
     def shutdown(self):
         """turn off the motors and leds"""
+
         self.running = False
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
         ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
@@ -164,6 +169,7 @@ class Snatch3r(object):
 
     def loop_forever(self):
         """robot run forever"""
+
         self.running = True
         while self.running:
             time.sleep(0.1)
@@ -212,27 +218,8 @@ class Snatch3r(object):
                 self.right(turn_speed, turn_speed)
 
             else:
-                # DONE: 4. Implement the following strategy to find the beacon.
-                # If the absolute value of the current_heading is less than 2, you are on the right heading.
-                #     If the current_distance is 0 return from this function, you have found the beacon!  return True
-                #     If the current_distance is greater than 0 drive straight forward (forward_speed, forward_speed)
-                # If the absolute value of the current_heading is NOT less than 2 but IS less than 10, you need to spin
-                #     If the current_heading is less than 0 turn left (-turn_speed, turn_speed)
-                #     If the current_heading is greater than 0 turn right  (turn_speed, -turn_speed)
-                # If the absolute value of current_heading is greater than 10, then stop and print Heading too far off
-                #
-                # Using that plan you should find the beacon if the beacon is in range.  If the beacon is not in range your
-                # robot should just sit still until the beacon is placed into view.  It is recommended that you always print
-                # something each pass through the loop to help you debug what is going on.  Examples:
-                #    print("On the right heading. Distance: ", current_distance)
-                #    print("Adjusting heading: ", current_heading)
-                #    print("Heading is too far off to fix: ", current_heading)
-
-                # Here is some code to help get you started
                 if math.fabs(current_heading) < 2:
-                    # Close enough of a heading to move forward
                     print("On the right heading. Distance: ", current_distance)
-                    # You add more!
                     if current_distance <= 5:
                         self.stop()
                         self.arm_up()
@@ -253,7 +240,6 @@ class Snatch3r(object):
                     elif current_heading > 0:
                         self.left(turn_speed, turn_speed)
 
-
                 elif math.fabs(current_heading) > 15:
                     self.stop()
                     print("Heading too far. Turning in attempt to find "
@@ -262,7 +248,6 @@ class Snatch3r(object):
 
             time.sleep(0.2)
 
-        # The touch_sensor was pressed to abort the attempt if this code runs.
         print("Abandon ship!")
         self.stop()
         return False
