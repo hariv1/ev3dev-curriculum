@@ -140,8 +140,6 @@ class Snatch3r(object):
             self.left_motor.stop()
 
     def blue_up(self, bs):
-        """(If the button is pressed, set the right LED to Green and turn the
-                right motor forwards.)"""
         if bs:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
             self.right_motor.run_forever(speed_sp=600)
@@ -196,8 +194,7 @@ class Snatch3r(object):
         self.right_motor.stop()
 
     def seek_beacon(self):
-        """(Seeks beacon using IR sensor)."""
-
+        
         my_becon_seeker = ev3.BeaconSeeker(channel=1)
 
         forward_speed = 300
