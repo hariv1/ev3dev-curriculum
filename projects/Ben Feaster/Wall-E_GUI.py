@@ -4,8 +4,6 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 import robot_controller as robo
 import ev3dev.ev3 as ev3
-from PIL import ImageTk
-
 
 
 def main():
@@ -14,7 +12,8 @@ def main():
 
     root = tkinter.Tk()
     root.title("Wall-E Decisions")
-    root.geometry('500x500')
+    root.geometry('500x5'
+                  '00')
     main_frame = ttk.Frame(root, padding=100)
     main_frame.grid()
 
@@ -65,12 +64,13 @@ def identify_plant(window):
     window.destroy()
 
     m1_window = tkinter.Toplevel()
-    m1_window.title("Find plant(IR remote)")
+    m1_window.title("Mission 1: Find Beacon using our Sensor")
 
     frame_m1 = ttk.Frame(m1_window, padding=80)
     frame_m1.grid()
 
-    instructions_label = tkinter.Label(frame_m1, text="Identify Plant")
+    instructions_label = tkinter.Label(frame_m1, text="Run Mission_1_ev3 on "
+                                                      "ev3 using SSH Session")
     instructions_label.grid(row=0, column=0)
 
 
