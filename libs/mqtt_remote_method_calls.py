@@ -128,7 +128,7 @@ import json
 import collections
 import paho.mqtt.client as mqtt
 
-LEGO_NUMBER = 18
+LEGO_NUMBER = 29
 
 
 class MqttClient(object):
