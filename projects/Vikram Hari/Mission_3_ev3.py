@@ -41,7 +41,7 @@ def main():
         btn.process()
         time.sleep(0.01)
 
-    robot.shutdown()
+    robot.arm_calibration()
 
 
 def handle_arm_up_button(button_state, robot):
@@ -62,9 +62,11 @@ def handle_calibrate_button(button_state, robot):
 def handle_shutdown(button_state, dc, robot):
     if button_state:
         dc.running = False
-
     time.sleep(0.01)
     robot.shutdown()
 
 
 main()
+
+
+
