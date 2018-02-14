@@ -5,6 +5,9 @@ import time
 def main():
     robot = robo.Snatch3r()
 
+    ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+    ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
+
     found_the_beacon = robot.seek_beacon()
 
     if found_the_beacon:
