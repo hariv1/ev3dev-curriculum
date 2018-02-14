@@ -14,20 +14,22 @@ def main():
 
         x = robot.pixy.value(1)
         height = robot.pixy.value(4)
+        print(x, height)
 
-        if x < 120:
+        if x < 150:
             robot.left(turn_speed, turn_speed)
 
-        elif x > 190:
+        elif x > 170:
             robot.right(turn_speed, turn_speed)
 
-        elif x > 120 and x < 190:
+        elif x > 150 and x < 170:
             robot.forward(150, 150)
-            if height > 170:
+            if height > 130:
                 robot.stop()
                 robot.arm_up()
                 time.sleep(1)
                 robot.arm_down()
+                break
                 #ev3.Sound.speak("Found Food").wait()
 
         time.sleep(0.25)
