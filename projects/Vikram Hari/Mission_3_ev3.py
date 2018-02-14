@@ -67,6 +67,3 @@ def handle_shutdown(button_state, dc, robot):
 
 
 main()
-
-
-
