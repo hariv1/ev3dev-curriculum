@@ -3,6 +3,7 @@ import time
 
 import robot_controller as robo
 
+
 def main():
     #ev3.Sound.speak("Finding Food").wait()
 
@@ -30,8 +31,8 @@ def main():
                 time.sleep(1)
                 robot.arm_down()
                 break
-                #ev3.Sound.speak("Found Food").wait()
 
         time.sleep(0.25)
+
 
 main()
