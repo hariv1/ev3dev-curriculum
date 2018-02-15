@@ -16,7 +16,6 @@ def main():
 
         x = robot.pixy.value(1)
         height = robot.pixy.value(4)
-        print(x, height)
 
         if x < 150:
             robot.left(turn_speed, turn_speed)

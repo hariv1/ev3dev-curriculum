@@ -4,9 +4,26 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 
 
-def main():
+class MyDelegateOnPc(object):
+    def __init__(self):
+        self.running = True
 
-    mqtt_client = com.MqttClient()
+    def button_press(self):
+        button_press_window = tkinter.Toplevel()
+        button_press_window.title("Beacon")
+
+        frame_2 = ttk.Frame(button_press_window, padding=80)
+        frame_2.grid()
+
+        label = ttk.Label(frame_2,
+                          text="Congratulations. You have got the Holy "
+                               "Beacon!")
+        label.grid(row=0, column=0)
+
+
+def main():
+    my_pc_delegate = MyDelegateOnPc()
+    mqtt_client = com.MqttClient(my_pc_delegate)
     mqtt_client.connect_to_ev3()
 
     root = tkinter.Tk()
