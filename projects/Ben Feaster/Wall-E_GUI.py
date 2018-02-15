@@ -49,7 +49,7 @@ def main_menu(root):
 
     find_plant_choice = tkinter.Button(tab1, text="Choice #1\nFind Plant")
     find_plant_choice.grid(row=1, column=0, pady=20)
-    find_plant_choice['command'] = lambda: identify_plant(window)
+    find_plant_choice['command'] = lambda: find_plant(window)
 
 
 def shutdown(mqtt_client, shutdown_ev3):
@@ -60,7 +60,7 @@ def shutdown(mqtt_client, shutdown_ev3):
     exit()
 
 
-def identify_plant(window):
+def find_plant(window):
     window.destroy()
 
     m1_window = tkinter.Toplevel()

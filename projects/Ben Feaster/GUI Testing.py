@@ -1,135 +1,73 @@
 
-__doc__ = info = '''
-This script was written by Sunjay Varma - www.sunjay-varma.com
-
-This script has two main classes:
-Tab - Basic tab used by TabBar for main functionality
-TabBar - The tab bar that is placed above tab bodies (Tabs)
-
-It uses a pretty basic structure:
-root
--->TabBar(root, init_name) (For switching tabs)
--->Tab    (Place holder for content)
-\t-->content (content of the tab; parent=Tab)
--->Tab    (Place holder for content)
-\t-->content (content of the tab; parent=Tab)
--->Tab    (Place holder for content)
-\t-->content (content of the tab; parent=Tab)
-etc.
-'''
-
-from tkinter import *
-
-BASE = RAISED
-SELECTED = FLAT
+import tkinter as tk
+from tkinter.scrolledtext import ScrolledText
+import tkinter
+from tkinter import ttk
+import mqtt_remote_method_calls as com
+import robot_controller as robo
+import ev3dev.ev3 as ev3
 
 
-# a base tab class
-class Tab(Frame):
-    def __init__(self, master, name):
-        Frame.__init__(self, master)
-        self.tab_name = name
+def demo():
+    mqtt_client = com.MqttClient()
+    mqtt_client.connect_to_ev3()
+    root = tk.Tk()
+    root.title("ttk.Notebook")
 
+    nb = ttk.Notebook(root)
+    root.geometry('500x500')
+    # adding Frames as pages for the ttk.Notebook
+    # first page, which would get widgets gridded into it
+    page0 = ttk.Frame(nb)
+    page1 = ttk.Frame(nb)
+    page2 = ttk.Frame(nb)
+    page3 = ttk.Frame(nb)
 
-# the bulk of the logic is in the actual tab bar
-class TabBar(Frame):
-    def __init__(self, master=None, init_name=None):
-        Frame.__init__(self, master)
-        self.tabs = {}
-        self.buttons = {}
-        self.current_tab = None
-        self.init_name = init_name
+    nb.add(page0, text='Main Menu')
+    find_plant_choice = tkinter.Button(page0, text="Choice #1\nFind Plant")
+    find_plant_choice.grid(row=1, column=0, pady=100)
+    find_plant_choice['command'] = lambda: find_plant(page0)
 
-    def show(self):
-        self.pack(side=TOP, expand=YES, fill=X)
-        self.switch_tab(self.init_name or self.tabs.keys())  # switch the tab to the first tab
+    exit_game_button = tkinter.Button(page0, text="Nevermind\n")
+    exit_game_button.grid(row=1, column=1, pady=100)
+    exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
 
-    def add(self, tab):
-        tab.pack_forget()  # hide the tab on init
+    nb.add(page1, text='Find Plant')
+    find_plant_choice = tkinter.Button(page1, text="Choice #1\nFind Plant")
+    find_plant_choice.grid(row=1, column=0, pady=100)
+    find_plant_choice['command'] = lambda: find_plant(page1)
 
-        self.tabs[tab.tab_name] = tab  # add it to the list of tabs
-        b = Button(self, text=tab.tab_name, relief=BASE,  # basic button stuff
-                   command=(lambda name=tab.tab_name: self.switch_tab(
-                       name)))  # set the command to switch tabs
-        b.pack(side=LEFT)  # pack the buttont to the left mose of self
-        self.buttons[tab.tab_name] = b  # add it to the list of buttons
+    exit_game_button = tkinter.Button(page1, text="Nevermind\n")
+    exit_game_button.grid(row=1, column=1, pady=100)
+    exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
 
-    def delete(self, tabname):
+    nb.add(page2, text='Identify Plant')
+    nb.add(page3, text='Transport Plant')
 
-        if tabname == self.current_tab:
-            self.current_tab = None
-            self.tabs[tabname].pack_forget()
-            del self.tabs[tabname]
-            self.switch_tab(self.tabs.keys())
-
-        else:
-            del self.tabs[tabname]
-
-        self.buttons[tabname].pack_forget()
-        del self.buttons[tabname]
-
-    def switch_tab(self, name):
-        if self.current_tab:
-            self.buttons[self.current_tab].config(relief=BASE)
-            self.tabs[self.current_tab].pack_forget()  # hide the current tab
-        self.tabs[name].pack(side=BOTTOM)  # add the new tab to the display
-        self.current_tab = name  # set the current tab to itself
-
-        self.buttons[name].config(
-            relief=SELECTED)  # set it to the selected style
-
-
-if __name__ == '__main__':
-    def write(x): print(x)
-
-    root = Tk()
-    root.title("Tabs")
-
-    bar = TabBar(root, "Info")
-
-    tab1 = Tab(root,
-               "Find_Plant")  # notice how this one's master is the root
-    # instead of the bar
-    Label(tab1,
-          text="Decide what Wall-E should do next.\n\n\n\n\nHere are his "
-               "choices:",
-          bg="white", fg="brown").pack(side=TOP, expand=YES, fill=BOTH)
-    Button(tab1, text="Exit",
-           command=(lambda: bar.delete("Wow..."))).pack(side=BOTTOM, fill=BOTH,
-                                                        expand=YES)
-    Button(tab1, text="Transport Plant",
-           command=(lambda: write("YOU PRESSED ME!"))).pack(side=BOTTOM,
-                                                            fill=BOTH,
-                                                            expand=YES)
-    Button(tab1, text="Identify Plant",
-           command=(lambda: bar.delete("Wow..."))).pack(side=BOTTOM, fill=BOTH,
-                                                        expand=YES)
-    Button(tab1, text="Find Plant",
-           command=(lambda: bar.delete("Wow..."))).pack(side=BOTTOM, fill=BOTH,
-                                                        expand=YES)
-
-    tab2 = Tab(root, "Identify_Plant")
-    Label(tab2, text="How are you??", bg='black', fg='#3366ff').pack(side=TOP,
-                                                                     fill=BOTH,
-                                                                     expand=YES)
-    txt = Text(tab2, width=50, height=20)
-    txt.focus()
-    txt.pack(side=LEFT, fill=X, expand=YES)
-    Button(tab2, text="Get",
-           command=(lambda: write(txt.get('1.0', END).strip()))).pack(
-        side=BOTTOM, expand=YES, fill=BOTH)
-
-    tab3 = Tab(root, "Info")
-    Label(tab3, bg='white',
-          text="This tab was given as an argument to the TabBar constructor.\n\nINFO:\n" + info).pack(
-        side=LEFT, expand=YES, fill=BOTH)
-
-    bar.add(tab1)  # add the tabs to the tab bar
-    bar.add(tab2)
-    bar.add(tab3)
-
-    # bar.config(bd=2, relief=RIDGE)			# add some border
-
-    bar.show()
+    nb.pack(expand=1, fill="both")
 
     root.mainloop()
+
+
+def shutdown(mqtt_client, shutdown_ev3):
+    if shutdown_ev3:
+        print("\nWall-E is going to sleep")
+        mqtt_client.send_message("Sleeping...")
+    mqtt_client.close()
+    exit()
+
+
+def find_plant(window):
+    m1_window = tkinter.Toplevel()
+    m1_window.title("Mission 1: Find Beacon using our Sensor")
+
+    frame_m1 = ttk.Frame(m1_window, padding=80)
+    frame_m1.grid()
+
+    instructions_label = tkinter.Label(frame_m1, text="Run Mission_1_ev3 on "
+                                                      "ev3 using SSH Session")
+    instructions_label.grid(row=0, column=0)
+
+
+if __name__ == "__main__":
+    demo()
