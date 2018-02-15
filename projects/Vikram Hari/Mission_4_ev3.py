@@ -19,10 +19,10 @@ def main():
         print(x, height)
 
         if x < 150:
-            robot.right(turn_speed, turn_speed)
+            robot.left(turn_speed, turn_speed)
 
         elif x > 170:
-            robot.left(turn_speed, turn_speed)
+            robot.right(turn_speed, turn_speed)
 
         elif x > 150 and x < 170:
             robot.forward(150, 150)

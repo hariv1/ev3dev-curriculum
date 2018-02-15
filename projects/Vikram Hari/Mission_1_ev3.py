@@ -12,10 +12,9 @@ def main():
 
     if found_the_beacon:
         ev3.Sound.speak("Oh no, it seems like my autonomous driving "
-                        "features do not work")
+                        "features do not work. Follow Mission 2 to drive me back via Satellite")
         ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
 
-        ev3.Sound.speak("Follow Mission 2 to drive me back via Satellite")
 
 main()
