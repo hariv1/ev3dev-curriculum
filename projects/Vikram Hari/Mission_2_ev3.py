@@ -8,8 +8,8 @@ def main():
     mqtt_client = com.MqttClient(robot)
     mqtt_client.connect_to_pc()
     robot.arm_calibration()
-    btn = ev3.Button
-    btn.on_backspace = mqtt_client.send_message('button_press')
+    btn = ev3.Button()
+    btn.on_up = lambda: mqtt_client.send_message('button_press')
     robot.loop_forever()
 
 main()

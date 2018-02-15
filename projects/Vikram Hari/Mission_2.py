@@ -9,13 +9,14 @@ class MyDelegateOnPc(object):
         self.running = True
 
     def button_press(self):
+        print('a')
         button_press_window = tkinter.Toplevel()
         button_press_window.title("Beacon")
 
-        frame_2 = ttk.Frame(button_press_window, padding=80)
-        frame_2.grid()
+        frame = ttk.Frame(button_press_window, padding=80)
+        frame.grid()
 
-        label = ttk.Label(frame_2,
+        label = ttk.Label(frame,
                           text="Congratulations. You have got the Holy "
                                "Beacon!")
         label.grid(row=0, column=0)
