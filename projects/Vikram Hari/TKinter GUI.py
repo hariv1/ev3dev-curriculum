@@ -60,7 +60,6 @@ def main_interface(root):
                                                     "Water")
     mission_3_button.grid(row=3, column=0, pady=20)
     mission_3_button['command'] = lambda: callback_mission_3(new_game_window)
-
     exit_game_button = ttk.Button(frame_2, text="End Game")
     exit_game_button.grid(row=4, column=0)
     exit_game_button['command'] = lambda: quit(mqtt_client, True)

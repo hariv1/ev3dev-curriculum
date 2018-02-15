@@ -22,6 +22,8 @@ def main():
     assert left_motor.connected
     assert right_motor.connected
 
+    robot.arm_calibration()
+
     rc1 = ev3.RemoteControl(channel=1)
     rc1.on_red_up = lambda button_state: robot.red_up(button_state)
     rc1.on_red_down = lambda button_state: robot.red_down(button_state)
@@ -40,8 +42,6 @@ def main():
         rc2.process()
         btn.process()
         time.sleep(0.01)
-
-    robot.arm_calibration()
 
 
 def handle_arm_up_button(button_state, robot):
