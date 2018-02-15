@@ -13,6 +13,7 @@ def demo():
     mqtt_client.connect_to_ev3()
     root = tk.Tk()
     root.title("ttk.Notebook")
+    root.configure(background="blue")
 
     nb = ttk.Notebook(root)
     root.geometry('500x500')
@@ -22,15 +23,24 @@ def demo():
     page1 = ttk.Frame(nb)
     page2 = ttk.Frame(nb)
     page3 = ttk.Frame(nb)
-
+    """
+    nb.add(page0, text='Main Menu')
+    image = tk.PhotoImage(file="C:\\Users\\feastebj\\Desktop\\walle1.png")
+    label = tk.Label(image=image)
+    label.pack()
+    """
     nb.add(page0, text='Main Menu')
     find_plant_choice = tkinter.Button(page0, text="Choice #1\nFind Plant")
+    find_plant_choice.configure(background="grey")
+    root.configure(background="blue")
     find_plant_choice.grid(row=1, column=0, pady=100)
     find_plant_choice['command'] = lambda: find_plant(page0)
 
     exit_game_button = tkinter.Button(page0, text="Nevermind\n")
+    exit_game_button.configure(background="grey")
     exit_game_button.grid(row=1, column=1, pady=100)
     exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
+
 
     nb.add(page1, text='Find Plant')
     find_plant_choice = tkinter.Button(page1, text="Choice #1\nFind Plant")
@@ -41,7 +51,18 @@ def demo():
     exit_game_button.grid(row=1, column=1, pady=100)
     exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
 
+
     nb.add(page2, text='Identify Plant')
+    identify_plant_choice = tkinter.Button(page2, text="Tell Wall-E\n to find "
+                                                       "Plant")
+    identify_plant_choice.grid(row=1, column=0, pady=100)
+    identify_plant_choice['command'] = lambda: identify_plant(page2)
+
+    exit_game_button = tkinter.Button(page2, text="Exit\n")
+    exit_game_button.grid(row=1, column=1, pady=100)
+    exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
+
+
     nb.add(page3, text='Transport Plant')
 
     nb.pack(expand=1, fill="both")
@@ -67,6 +88,10 @@ def find_plant(window):
     instructions_label = tkinter.Label(frame_m1, text="Run Mission_1_ev3 on "
                                                       "ev3 using SSH Session")
     instructions_label.grid(row=0, column=0)
+
+
+def identify_plant(window):
+    print("Hello")
 
 
 if __name__ == "__main__":
