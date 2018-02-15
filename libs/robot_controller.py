@@ -37,6 +37,7 @@ class Snatch3r(object):
         self.color_sensor = ev3.ColorSensor()
         self.ir_sensor = ev3.InfraredSensor()
         self.pixy = ev3.Sensor(driver_name="pixy-lego")
+        self.btn = ev3.Button()
 
         assert self.pixy.connected
         assert self.ir_sensor.connected
@@ -173,6 +174,7 @@ class Snatch3r(object):
         self.running = True
         while self.running:
             time.sleep(0.01)
+            self.btn.process()
 
 
     def forward(self, speed_left, speed_right):
