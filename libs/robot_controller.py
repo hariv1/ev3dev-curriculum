@@ -181,13 +181,13 @@ class Snatch3r(object):
 
     def left(self, speed_left, speed_right):
         """robot tern left"""
-        self.left_motor.run_forever(speed_sp=speed_left)
-        self.right_motor.run_forever(speed_sp=-speed_right)
+        self.left_motor.run_forever(speed_sp=-speed_left)
+        self.right_motor.run_forever(speed_sp=speed_right)
 
     def right(self, speed_left, speed_right):
         """robot tern right"""
-        self.left_motor.run_forever(speed_sp=-speed_left)
-        self.right_motor.run_forever(speed_sp=speed_right)
+        self.left_motor.run_forever(speed_sp=speed_left)
+        self.right_motor.run_forever(speed_sp=-speed_right)
 
     def back(self, speed_left, speed_right):
         """robot go back"""
@@ -220,7 +220,7 @@ class Snatch3r(object):
             else:
                 if math.fabs(current_heading) < 2:
                     print("On the right heading. Distance: ", current_distance)
-                    if current_distance <= 5:
+                    if current_distance <= 2:
                         self.stop()
                         self.arm_up()
                         time.sleep(1)
