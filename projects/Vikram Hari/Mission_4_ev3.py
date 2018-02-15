@@ -5,7 +5,7 @@ import robot_controller as robo
 
 
 def main():
-    #ev3.Sound.speak("Finding Food").wait()
+    ev3.Sound.speak("Finding Food").wait()
 
     robot = robo.Snatch3r()
     robot.pixy.mode = "SIG1"
