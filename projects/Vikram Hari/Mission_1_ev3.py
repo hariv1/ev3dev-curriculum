@@ -1,6 +1,6 @@
 import ev3dev.ev3 as ev3
 import robot_controller as robo
-import time
+
 
 def main():
     robot = robo.Snatch3r()
