@@ -1,18 +1,14 @@
-
 import tkinter as tk
-from tkinter.scrolledtext import ScrolledText
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-import robot_controller as robo
-import ev3dev.ev3 as ev3
 
 
 def demo():
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
     root = tk.Tk()
-    root.title("ttk.Notebook")
+    root.title("Wall-E GUI")
     root.configure(background="blue")
 
     nb = ttk.Notebook(root)
@@ -24,11 +20,10 @@ def demo():
     page2 = ttk.Frame(nb)
     page3 = ttk.Frame(nb)
 
-
     nb.add(page0, text='Main Menu')
 
     find_plant_choice = tkinter.Button(page0, text="Tell Wall-E\n to find "
-                                                       "Plant")
+                                                   "Plant")
     find_plant_choice.configure(background="grey")
     find_plant_choice.grid(row=1, column=1, pady=10)
     find_plant_choice['command'] = lambda: find_plant(page0)
@@ -44,52 +39,45 @@ def demo():
                                                    "Plant")
     find_plant_choice.configure(background="grey")
     find_plant_choice.grid(row=1, column=3, pady=0)
-    find_plant_choice['command'] = lambda: find_plant(page0)
-
-    find_plant_choice = tkinter.Button(page0, text="Control Wall-E "
-                                                   "\nYourself")
-    find_plant_choice.configure(background="grey")
-    find_plant_choice.grid(row=1, column=4, pady=0)
-    find_plant_choice['command'] = lambda: find_plant(page0)
+    find_plant_choice['command'] = lambda: transport_plant(page0)
 
     exit_game_button = tkinter.Button(page0, text="Exit Program   \n")
     exit_game_button.configure(background="grey")
     exit_game_button.grid(row=1, column=5, pady=0)
     exit_game_button['command'] = lambda: shutdown(mqtt_client, True)
 
-
     nb.add(page1, text='Find Plant Info')
     game_label = tkinter.Label(page1, text="Robot first finds the IR "
                                            "remote\n which "
-                                           "acts as a plant. Robot then "
+                                           "acts as a plant. Also "
+                                           "swerves away from humans.\nRobot "
+                                           "then "
                                            "picks up plant\n and says 'found "
                                            "plant'."
-                                           "\n ", font=("Helvetica", 10), fg='blue')
+                                           "\n ", font=("Helvetica", 10),
+                               fg='blue')
     game_label.grid(row=0, column=0)
-
 
     nb.add(page2, text='Identify Plant Info')
     game_label = tkinter.Label(page2, text="Robot uses the Pixie camera to\n "
-                                           "identify a green 'plant'. Says "
+                                           "identify a green 'plant' "
+                                           "while turning\n to scan for "
+                                           "plants. Says "
                                            "'found plant' after identified.\n",
                                font=(
                                    "Helvetica", 10), fg='brown')
     game_label.grid(row=0, column=0)
 
-
     nb.add(page3, text='Transport Plant Info')
     game_label = tkinter.Label(page3, text="Robot picks up the IR remote "
                                            "acting as a plant,\n "
-                                           "it then transports it forward\n "
-                                           "while avoiding other humans "
-                                           "using the IR sensor.", font=(
-        "Helvetica", 10), fg='brown')
+                                           "it then lets the PC take \n"
+                                           "control of Wall-E",
+                               font=("Helvetica", 10), fg='brown')
     game_label.grid(row=0, column=0)
     nb.pack(expand=1, fill="both")
 
-
     root.mainloop()
-
 
 
 def shutdown(mqtt_client, shutdown_ev3):
@@ -100,13 +88,43 @@ def shutdown(mqtt_client, shutdown_ev3):
     exit()
 
 
-def find_plant(window):
-    print("hello")
+def find_plant(page1):
+    page1.grid_location(250, 250)
+    find_plant_window = tkinter.Toplevel()
+    find_plant_window.title("Decision 1: Tell Wall-E to find plant.")
+
+    frame_find_plant = ttk.Frame(find_plant_window, padding=80)
+    frame_find_plant.grid()
+
+    text = tkinter.Label(frame_find_plant, text="Use SSH terminal to "
+                                                "start please")
+    text.grid(row=0, column=0)
 
 
+def identify_plant(page2):
+    page2.grid_location(250, 250)
+    find_plant_window = tkinter.Toplevel()
+    find_plant_window.title("Decision 2: Tell Wall-E to identify a plant.")
 
-def identify_plant(window):
-    print("Hello")
+    frame_find_plant = ttk.Frame(find_plant_window, padding=80)
+    frame_find_plant.grid()
+
+    text = tkinter.Label(frame_find_plant, text="Use SSH terminal to "
+                                                "start please")
+    text.grid(row=0, column=0)
+
+
+def transport_plant(page3):
+    page3.grid_location(250, 250)
+    find_plant_window = tkinter.Toplevel()
+    find_plant_window.title("Decision 3: Take control of Wall-E.")
+
+    frame_find_plant = ttk.Frame(find_plant_window, padding=80)
+    frame_find_plant.grid()
+
+    text = tkinter.Label(frame_find_plant, text="Use SSH terminal to "
+                                                "start please")
+    text.grid(row=0, column=0)
 
 
 if __name__ == "__main__":
