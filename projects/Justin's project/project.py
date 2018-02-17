@@ -1,4 +1,5 @@
 import robot_controller as robo
+import ev3dev.ev3 as ev3
 import tkinter
 from tkinter import ttk
 import math
@@ -102,11 +103,8 @@ def add_path(event, drawer):
     drawer.set_point(event.x, event.y)
 
 
-# def start_path(mqtt_client):
-#
-#     mqtt_client.send_message
-
 def start_path(drawer, mqtt_client):
+
 
     # correct the angle that need to turn
     angle_new_list = [drawer.angle_list[0]]
@@ -114,10 +112,17 @@ def start_path(drawer, mqtt_client):
         new_add = drawer.angle_list[k] - drawer.angle_list[k - 1]
         angle_new_list.append(new_add)
 
+
     # let the mqtt send message to ev3 for running
-    for k in range(len(drawer.distance_list)):
-        mqtt_client.send_message("turn_degrees", angle_new_list[k], 900)
-        mqtt_client.send_message("drive_inches", drawer.distance_list[k], 900)
+    mqtt_client.send_message("new_run_path", [angle_new_list, drawer.distance_list])
+
+
+    # for k in range(len(drawer.distance_list)):
+    #
+    #     drawer.distance_list[k] *= (0.1 * scale_select)
+    #     mqtt_client.send_message("turn_degrees", [angle_new_list[k], 900])
+    #     mqtt_client.send_message("drive_inches_ir", [drawer.distance_list[k], 900])
+    #     print(angle_new_list[k])
 
 
 def end(mqtt_client):
