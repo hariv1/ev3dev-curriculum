@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
+import Transport_plant
 
 
 def demo():
@@ -125,6 +126,7 @@ def transport_plant(page3):
     text = tkinter.Label(frame_find_plant, text="Use SSH terminal to "
                                                 "start please")
     text.grid(row=0, column=0)
+    Transport_plant.main()
 
 
 if __name__ == "__main__":

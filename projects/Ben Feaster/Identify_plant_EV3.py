@@ -1,9 +1,5 @@
 import ev3dev.ev3 as ev3
-
-left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-assert left_motor.connected
-
-speed = 500
+import robot_controller as robo
 
 
 class DataContainer(object):
@@ -15,29 +11,39 @@ class DataContainer(object):
 
 def main():
     print("--------------------------------------------")
-    print(" Identify a Plant")
+
     print("--------------------------------------------")
+    ev3.Sound.speak("Drive to the color").wait()
     print("Press Back to exit this program.")
 
-    print("Goodbye!")
-    ev3.Sound.speak("Goodbye").wait()
+    robot = robo.Snatch3r()
 
+    ev3.Sound.speak("Seeking ")
 
-def identify_plant(button_state, robot):
-    if button_state:
-        ev3.Sound.speak("Identifying plant").wait()
+    # DONE: 3. Implement the task as stated in this module's initial
+    # comment block
+    # It is recommended that you add to your Snatch3r class's constructor the color_sensor, as shown
+    #   self.color_sensor = ev3.ColorSensor()
+    #   assert self.color_sensor
+    # Then here you can use a command like robot.color_sensor.color to check the value
 
-        while True:
-            while left_motor.run_forever(speed_sp=speed):
-                if robot.color_sensor.color == "Green":
-                    robot.stop()
-                    ev3.Sound.speak("Identified plant").wait()
-                    break
-    else:
-        robot.stop()
+    while True:
+
+        if robot.color_sensor.color == 3:  # Green color = id: 3
+            robot.stop()
+            ev3.Sound.speak("Found ")
+            break
+
+        robot.forward(50, 50)
 
 
 def handle_shutdown(button_state, dc):
     """Exit the program."""
     if button_state:
         dc.running = False
+
+
+# ----------------------------------------------------------------------
+# Calls  main  to start the ball rolling.
+# ----------------------------------------------------------------------
+main()
