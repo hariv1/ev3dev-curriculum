@@ -1,5 +1,6 @@
 import ev3dev.ev3 as ev3
 import robot_controller as robo
+import time
 
 
 class DataContainer(object):
@@ -13,13 +14,12 @@ def main():
     print("--------------------------------------------")
 
     print("--------------------------------------------")
-    ev3.Sound.speak("Drive to the color").wait()
+    ev3.Sound.speak("Identifying plant").wait()
     print("Press Back to exit this program.")
 
     robot = robo.Snatch3r()
 
-    ev3.Sound.speak("Seeking ")
-
+    robot.arm_calibration()
     # DONE: 3. Implement the task as stated in this module's initial
     # comment block
     # It is recommended that you add to your Snatch3r class's constructor the color_sensor, as shown
@@ -28,10 +28,13 @@ def main():
     # Then here you can use a command like robot.color_sensor.color to check the value
 
     while True:
-
+        if robot.ir_sensor.proximity < 10:
+            ev3.Sound.beep()
+            robot.right(50, 50)  # swerves away from human
+            time.sleep(2.0)
         if robot.color_sensor.color == 3:  # Green color = id: 3
             robot.stop()
-            ev3.Sound.speak("Found ")
+            ev3.Sound.speak("Identified plant")
             break
 
         robot.forward(50, 50)
