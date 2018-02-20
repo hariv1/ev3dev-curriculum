@@ -174,8 +174,6 @@ class Snatch3r(object):
         self.running = True
         while self.running:
             time.sleep(0.01)
-            self.btn.process()
-
 
     def forward(self, speed_left, speed_right):
         """robot run forward"""
