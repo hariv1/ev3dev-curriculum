@@ -8,9 +8,8 @@ class MyDelegateOnPc(object):
     def __init__(self):
         self.running = True
 
-    """Method that creates a new Toplevel when up button is pressed on ev3"""
-
     def button_press(self):
+        """Method that creates a new Toplevel when up button is pressed on ev3"""
         button_press_window = tkinter.Toplevel()
         button_press_window.title("Beacon")
 
