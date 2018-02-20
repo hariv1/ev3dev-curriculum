@@ -8,8 +8,9 @@ class MyDelegateOnPc(object):
     def __init__(self):
         self.running = True
 
+    """Method that creates a new Toplevel when up button is pressed on ev3"""
+
     def button_press(self):
-        print('A')
         button_press_window = tkinter.Toplevel()
         button_press_window.title("Beacon")
 
@@ -109,45 +110,53 @@ def main():
 
 
 def callback_forward(mqtt_client, left_speed_entry, right_speed_entry):
+    """Method that allows mqtt to call forward method on robot controller"""
     print("Forward")
     mqtt_client.send_message("forward", [int(left_speed_entry.get()),
                                          int(right_speed_entry.get())])
 
 
 def callback_left(mqtt_client, left_speed_entry, right_speed_entry):
+    """Method that allows mqtt to call left method on robot controller"""
     print("Left")
     mqtt_client.send_message("left", [int(left_speed_entry.get()),
                                       int(right_speed_entry.get())])
 
 
 def callback_right(mqtt_client, left_speed_entry, right_speed_entry):
+    """Method that allows mqtt to call right method on robot controller"""
     print("Right")
     mqtt_client.send_message("right", [int(left_speed_entry.get()),
                                        int(right_speed_entry.get())])
 
 
 def callback_back(mqtt_client, left_speed_entry, right_speed_entry):
+    """Method that allows mqtt to call back method on robot controller"""
     print("Back")
     mqtt_client.send_message("back", [int(left_speed_entry.get()),
                                       int(right_speed_entry.get())])
 
 
 def callback_stop(mqtt_client):
+    """Method that allows mqtt to call stop method on robot controller"""
     print("Stop")
     mqtt_client.send_message("stop")
 
 
 def send_up(mqtt_client):
+    """Method that allows mqtt to call send_up method on robot controller"""
     print("arm_up")
     mqtt_client.send_message("arm_up")
 
 
 def send_down(mqtt_client):
+    """Method that allows mqtt to call send_down method on robot controller"""
     print("arm_down")
     mqtt_client.send_message("arm_down")
 
 
 def quit_program(mqtt_client, shutdown_ev3):
+    """Method that allows mqtt to call shutdown method on robot controller"""
     if shutdown_ev3:
         print("shutdown")
         mqtt_client.send_message("shutdown")

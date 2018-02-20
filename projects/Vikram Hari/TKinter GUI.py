@@ -30,6 +30,7 @@ def main():
 
 
 def main_interface(root):
+    """Second Frame set in game, allows user to play desired mission"""
     root.withdraw()
 
     mqtt_client = com.MqttClient()
@@ -71,9 +72,8 @@ def main_interface(root):
     exit_game_button['command'] = lambda: quit(mqtt_client, True)
 
 
-
-
 def quit(mqtt_client, shutdown_ev3):
+    """Method that calls shutdown on robot controller at user's will"""
     if shutdown_ev3:
         print("\nNASA thanks you for your service!")
         mqtt_client.send_message("shutdown")
@@ -82,6 +82,8 @@ def quit(mqtt_client, shutdown_ev3):
 
 
 def callback_mission_2(new_game_window):
+    """Method that destroys previous game window and creates a new Toplevel
+    GUI with many buttons and labels"""
     new_game_window.destroy()
 
     m2_window = tkinter.Toplevel()
@@ -110,6 +112,8 @@ def callback_mission_2(new_game_window):
 
 
 def callback_mission_1(new_game_window):
+    """Method that destroys previous game window and creates a new Toplevel
+        GUI with many buttons and labels"""
     new_game_window.destroy()
 
     m1_window = tkinter.Toplevel()
@@ -129,6 +133,8 @@ def callback_mission_1(new_game_window):
 
 
 def callback_mission_3(m2_window):
+    """Method that destroys previous game window and creates a new Toplevel
+        GUI with many buttons and labels"""
     m2_window.destroy()
 
     m3_window = tkinter.Toplevel()
@@ -149,6 +155,8 @@ def callback_mission_3(m2_window):
 
 
 def callback_mission_4(m3_window):
+    """Method that destroys previous game window and creates a new Toplevel
+        GUI with many buttons and labels"""
     m3_window.destroy()
 
     m4_window = tkinter.Toplevel()

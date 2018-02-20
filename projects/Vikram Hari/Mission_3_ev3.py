@@ -45,21 +45,29 @@ def main():
 
 
 def handle_arm_up_button(button_state, robot):
+    """If red up button is pressed on beacon (channel 2), calls arm_up
+    method on robot controller"""
     if button_state:
         robot.arm_up()
 
 
 def handle_arm_down_button(button_state, robot):
+    """If red down button is pressed on beacon (channel 2), calls arm_down
+    method on robot controller"""
     if button_state:
         robot.arm_down()
 
 
 def handle_calibrate_button(button_state, robot):
+    """If blue up button is pressed on beacon (channel 2), calls arm_down
+        method on robot controller"""
     if button_state:
         robot.arm_calibration()
 
 
 def handle_shutdown(button_state, dc, robot):
+    """If backspace button is pressed on the ev3, calls the shutdown
+    method on robot controller and sets dc.running to False"""
     if button_state:
         dc.running = False
     time.sleep(0.01)

@@ -17,10 +17,8 @@ def main():
 
 
 def callback_button_press(button_state, mqtt_client):
-    print('a')
     if button_state:
         mqtt_client.send_message('button_press')
-        print('b')
 
 
 main()
