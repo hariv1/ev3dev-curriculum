@@ -142,6 +142,11 @@ def callback_mission_3(m2_window):
                                                       "Beacon to pick up and bring back water\n")
     instructions_label.grid(row=0, column=0)
 
+    done_button = ttk.Button(frame_m3, text="Press to go to Mission 4")
+
+    done_button.grid(row=1, column=0)
+    done_button['command'] = lambda: callback_mission_4(m3_window)
+
 
 def callback_mission_4(m3_window):
     m3_window.destroy()

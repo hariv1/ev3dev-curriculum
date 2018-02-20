@@ -9,7 +9,7 @@ class MyDelegateOnPc(object):
         self.running = True
 
     def button_press(self):
-        print('a')
+        print('A')
         button_press_window = tkinter.Toplevel()
         button_press_window.title("Beacon")
 
