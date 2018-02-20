@@ -60,7 +60,7 @@ def demo():
     game_label.grid(row=0, column=0)
 
     nb.add(page2, text='Identify Plant Info')
-    game_label = tkinter.Label(page2, text="Robot uses the Pixie camera to\n "
+    game_label = tkinter.Label(page2, text="Robot uses the color sensor to\n "
                                            "identify a green 'plant' "
                                            "while turning\n to scan for "
                                            "plants. Says "

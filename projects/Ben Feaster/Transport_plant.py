@@ -10,7 +10,7 @@ def main():
     mqtt_client.connect_to_ev3()
 
     root = tkinter.Tk()
-    root.title("Satellite Remote Drive")
+    root.title("Transport Plant")
 
     main_frame = ttk.Frame(root, padding=20)
     main_frame.grid()
