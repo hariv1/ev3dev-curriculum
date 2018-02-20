@@ -62,6 +62,43 @@ class Snatch3r(object):
         self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
         self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
+    def drive_inches_ir(self, inches_target, speed_deg_per_sec):
+        """drive left and right motor, a given distance (inch), a given speed(
+        degree per second, drive forward if the position is positive,
+        backward if the position is negative)"""
+
+        distance = 90 * inches_target
+        start_position = self.left_motor.position
+
+        self.left_motor.run_forever(speed_sp=speed_deg_per_sec)
+        self.right_motor.run_forever(speed_sp=speed_deg_per_sec)
+        while True:
+            current_position = self.left_motor.position
+            if current_position - start_position > distance:
+                break
+
+        # self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        # self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+
+    def new_run_path(self, angle_list, distance_list):
+
+        for k in range(len(distance_list)):
+            distance_list[k] *= 0.1
+            self.turn_degrees(angle_list[k], 900)
+            self.drive_inches(distance_list[k], 900)
+            print(angle_list[k], distance_list[k], self.ir_sensor.proximity)
+            if self.ir_sensor.proximity < 10:
+                self.left_motor.stop()
+                self.right_motor.stop()
+                break
+
+
+            # mqtt_client.send_message("turn_degrees", [angle_new_list[k], 900])
+            # mqtt_client.send_message("drive_inches_ir", [drawer.distance_list[k], 900])
+            # print(angle_new_list[k])
+
+
+
     def turn_degrees(self, degrees_to_turn, turn_speed_sp):
         """turn left and right motors a given number of degree and given
         speed(degree per second. If the degree_to_turn is positive,
@@ -77,16 +114,15 @@ class Snatch3r(object):
             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
             self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
         elif degrees_to_turn < 0:
-            self.left_motor.run_to_rel_pos(position_sp=-position,
+            self.left_motor.run_to_rel_pos(position_sp=position,
                                            speed_sp=turn_speed_sp,
                                            stop_action='brake')
-            self.right_motor.run_to_rel_pos(position_sp=position,
+            self.right_motor.run_to_rel_pos(position_sp=-position,
                                             speed_sp=turn_speed_sp,
                                             stop_action='brake')
             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
             self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
-        ev3.Sound.beep().wait()
 
     def arm_calibration(self):
         """"(Raise the arm until it hit the touch sensor, then tern back to
@@ -201,8 +237,7 @@ class Snatch3r(object):
         self.right_motor.stop()
 
     def seek_beacon(self):
-        """(Seeks beacon using IR sensor)."""
-
+        
         my_becon_seeker = ev3.BeaconSeeker(channel=1)
 
         forward_speed = 300
