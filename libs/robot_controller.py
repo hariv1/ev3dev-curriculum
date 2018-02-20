@@ -256,7 +256,8 @@ class Snatch3r(object):
             else:
                 if math.fabs(current_heading) < 2:
                     print("On the right heading. Distance: ", current_distance)
-                    if current_distance <= 2:
+                    if current_distance <= 1:
+                        time.sleep(0.5)
                         self.stop()
                         self.arm_up()
                         time.sleep(1)
