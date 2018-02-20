@@ -160,14 +160,16 @@ def callback_mission_4(m3_window):
     m3_window.destroy()
 
     m4_window = tkinter.Toplevel()
-    m4_window.title("Mission 4: Use Beacon to search for food")
+    m4_window.title("Mission 4: Use Pixy Cam to search for food")
 
     frame_m3 = ttk.Frame(m4_window, padding=80)
     frame_m3.grid()
 
     instructions_label = tkinter.Label(frame_m3, text="Run Mission_4_ev3 "
                                                       "on SSH Terminal\n\nUse "
-                                                      "Beacon to pick up and bring back food\n")
+                                                      "Pixy Cam to pick up "
+                                                      "and "
+                                                      "bring back food\n")
     instructions_label.grid(row=0, column=0)
 
 

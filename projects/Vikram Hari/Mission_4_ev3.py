@@ -25,7 +25,7 @@ def main():
 
         elif x > 150 and x < 170:
             robot.forward(150, 150)
-            if height > 80:
+            if height > 73:
                 robot.stop()
                 robot.arm_up()
                 time.sleep(1)
