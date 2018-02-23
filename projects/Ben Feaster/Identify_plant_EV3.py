@@ -4,28 +4,27 @@ import time
 
 
 class DataContainer(object):
-    """ Helper class that might be useful to communicate between different callbacks."""
+    """ Helper class that might be useful to communicate between
+    different callbacks."""
 
     def __init__(self):
         self.running = True
 
 
 def main():
-    print("--------------------------------------------")
+    """First, performs an arm calibration, then robot maintains a straight
+    path unless it detects a human motion with the IR sensor or it detects
+    a color with the color sensor. If the color
+    sensor sees green, the robot will stop moving."""
 
+    print("--------------------------------------------")
+    print("------------Identify Plant------------------")
     print("--------------------------------------------")
     ev3.Sound.speak("Identifying plant").wait()
     print("Press Back to exit this program.")
 
     robot = robo.Snatch3r()
-
     robot.arm_calibration()
-    # DONE: 3. Implement the task as stated in this module's initial
-    # comment block
-    # It is recommended that you add to your Snatch3r class's constructor the color_sensor, as shown
-    #   self.color_sensor = ev3.ColorSensor()
-    #   assert self.color_sensor
-    # Then here you can use a command like robot.color_sensor.color to check the value
 
     while True:
         if robot.ir_sensor.proximity < 10:

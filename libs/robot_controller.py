@@ -77,8 +77,8 @@ class Snatch3r(object):
             if current_position - start_position > distance:
                 break
 
-        # self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
-        # self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+                # self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+                # self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
     def new_run_path(self, angle_list, distance_list):
 
@@ -93,11 +93,9 @@ class Snatch3r(object):
                 break
 
 
-            # mqtt_client.send_message("turn_degrees", [angle_new_list[k], 900])
-            # mqtt_client.send_message("drive_inches_ir", [drawer.distance_list[k], 900])
-            # print(angle_new_list[k])
-
-
+                # mqtt_client.send_message("turn_degrees", [angle_new_list[k], 900])
+                # mqtt_client.send_message("drive_inches_ir", [drawer.distance_list[k], 900])
+                # print(angle_new_list[k])
 
     def turn_degrees(self, degrees_to_turn, turn_speed_sp):
         """turn left and right motors a given number of degree and given
@@ -123,12 +121,11 @@ class Snatch3r(object):
             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
             self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
-
     def arm_calibration(self):
         """"(Raise the arm until it hit the touch sensor, then tern back to
         position 0)"""
 
-        self.arm_motor.run_forever(speed_sp= self.MAX_SPEED)
+        self.arm_motor.run_forever(speed_sp=self.MAX_SPEED)
         while True:
             if self.touch_sensor.is_pressed:
                 break
@@ -157,7 +154,7 @@ class Snatch3r(object):
 
     def arm_down(self):
         """(Moves the Snatch3r arm to the down position.)"""
-        self.arm_motor.run_to_abs_pos(position_sp= 0, speed_sp=900)
+        self.arm_motor.run_to_abs_pos(position_sp=0, speed_sp=900)
         self.arm_motor.wait_while(self.arm_motor.STATE_RUNNING)
         ev3.Sound.beep().wait()
 
@@ -237,7 +234,7 @@ class Snatch3r(object):
         self.right_motor.stop()
 
     def seek_beacon(self):
-        
+
         my_becon_seeker = ev3.BeaconSeeker(channel=1)
 
         forward_speed = 300

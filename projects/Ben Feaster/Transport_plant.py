@@ -5,6 +5,8 @@ import mqtt_remote_method_calls as com
 
 
 def main():
+    """Creates a GUI for the robot motor controls and calls each motor
+    function below this main() function."""
     mqtt_client = com.MqttClient()
 
     mqtt_client.connect_to_ev3()

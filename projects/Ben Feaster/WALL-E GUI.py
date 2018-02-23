@@ -2,10 +2,13 @@ import tkinter as tk
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-import Transport_plant
+import Transport_plant  # import other .py file
 
 
 def demo():
+    """Creates a GUI for the Wall-E robot using tabs at the top of the
+    window and buttons to select choices. The buttons call back the
+    choices the robot can make."""
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
     root = tk.Tk()
@@ -90,6 +93,7 @@ def shutdown(mqtt_client, shutdown_ev3):
 
 
 def find_plant(page1):
+    """Function that call"""
     page1.grid_location(250, 250)
     find_plant_window = tkinter.Toplevel()
     find_plant_window.title("Decision 1: Tell Wall-E to find plant.")

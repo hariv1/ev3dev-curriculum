@@ -7,7 +7,7 @@ import robot_controller as robo
 
 
 def main():
-
+    """Starts an arm calibration and then seeks beakon. It then picks up the plant"""
     print("--------------------------------------------")
     print(" Find Plant")
     print("--------------------------------------------")

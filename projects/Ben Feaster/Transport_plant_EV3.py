@@ -3,6 +3,7 @@ import robot_controller as robo
 
 
 def main():
+    """Connect wireless to the Robot"""
     robot = robo.Snatch3r()
     mqtt_client = com.MqttClient(robot)
     mqtt_client.connect_to_pc()
